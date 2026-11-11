@@ -1,5 +1,16 @@
 # MaxSensual Growth Control v1
 
+<!-- growth-day-audit-2026-11-11:start -->
+## 2026-11-11 增量审计与当日纠错
+
+- [当日全量回顾](../records/daily/2026-11-11-full-review.md)
+- [PMax 与推荐变更保护](../state/guards-2026-11-11-addendum.json)
+- [操作追溯 JSONL](../records/runs/2026-11-11-operations-addendum.jsonl)
+- [T08 Pixel 回滚事故](../docs/incidents/T08-2026-11-11-production-rollback.md)
+
+本目录仍是人工决策索引，不是实时状态同步或跨仓库强制锁。推荐技术仓库只读参照；市场主线优先真实消费者购买而非推荐 CTR 或 GA4 加购数量。
+<!-- growth-day-audit-2026-11-11:end -->
+
 **Single business-control entrypoint. No changes to the recommendation repository.**
 
 This directory is a small, versioned coordination layer for experiments, tasks and cross-system risks. It complements `AGENTS.md`, `docs/agent-execution.md` and the existing evidence/decision records; it is **not** a new deployment system.

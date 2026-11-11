@@ -1,5 +1,16 @@
 # MaxSensual · Shopify Analytics & Growth Knowledge Base
 
+<!-- growth-day-audit-2026-11-11:start -->
+## 当前业务控制与最新审计（先读）
+
+- [Growth Control 控制台](control/README.md)：**人工决策索引**，不是自动远程锁或生产真值。
+- [2026-11-11 全日增量审计](records/daily/2026-11-11-full-review.md)：PMax Purchase-only、真实订单、T05–T08、推荐协作与纠错。
+- [今天新增的正式决策](records/decisions/2026-11-11-addendum.json) · [洞察](records/insights/2026-11-11-addendum.json) · [操作日志](records/runs/2026-11-11-operations-addendum.jsonl) · [具体约束](state/guards-2026-11-11-addendum.json)。
+- [方法增量 M-17～M-25](docs/methods-2026-11-11-addendum.md) · [T08 生产事故](docs/incidents/T08-2026-11-11-production-rollback.md) · [跨仓库协作边界](docs/coordination-2026-11-11.md)。
+
+**执行前：** 重读实时平台；核对用户授权；技术推荐仓库只读参照，当前不修改/调度。
+<!-- growth-day-audit-2026-11-11:end -->
+
 A versioned knowledge base for evidence-backed Shopify, Google Ads, GA4, Supermetrics and Agent growth operations. It separates reusable methods, current guardrails, observed market signals, business decisions, and append-only action history.
 
 > **Publication notice (2026-11-11):** The repository is public. The operator explicitly authorized publishing both the previously public-safe methodology and the historical business records. Campaign IDs, budgets, supplier-source prices and test-order references below are intentionally published. Do not add credentials, access tokens, customer contact information, full checkout URLs or raw sensitive API payloads. History is not a substitute for current platform state.

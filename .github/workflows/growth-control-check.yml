@@ -3,11 +3,21 @@ on:
   push:
     paths:
       - 'control/**'
+      - 'records/**'
+      - 'docs/**'
+      - 'state/guards-2026-11-11-addendum.json'
+      - 'scripts/validate_growth_day.py'
+      - 'tests/test_growth_day_audit.py'
       - 'scripts/growth_control.py'
       - '.github/workflows/growth-control-check.yml'
   pull_request:
     paths:
       - 'control/**'
+      - 'records/**'
+      - 'docs/**'
+      - 'state/guards-2026-11-11-addendum.json'
+      - 'scripts/validate_growth_day.py'
+      - 'tests/test_growth_day_audit.py'
       - 'scripts/growth_control.py'
       - '.github/workflows/growth-control-check.yml'
 permissions:
@@ -22,3 +32,5 @@ jobs:
           python-version: '3.11'
       - run: python3 scripts/growth_control.py validate
       - run: python3 scripts/growth_control.py status
+      - run: python3 scripts/validate_growth_day.py
+      - run: python3 -m unittest discover -s tests -p 'test_growth_day_audit.py' -v

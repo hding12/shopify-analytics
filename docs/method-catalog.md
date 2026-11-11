@@ -1,5 +1,9 @@
 # Cross-domain method catalog
 
+<!-- growth-day-audit-2026-11-11:start -->
+**2026-11-11 增量：** [M-17～M-25（负证据复验、唯一事件生产者、部署哈希、跨平台单位、推荐/广告实验冲突）](methods-2026-11-11-addendum.md)。历史 M-01～M-16 原文保留。
+<!-- growth-day-audit-2026-11-11:end -->
+
 Every method card should specify: question, trigger, prerequisite evidence, input source & unit, procedure, exclusions, uncertainty threshold, decision output, authority to act, verification and escalation/stop condition.
 
 | Code | Method | Reusable core | Real-world failure case it prevents |

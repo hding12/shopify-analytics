@@ -1,0 +1,359 @@
+[
+  {
+    "id": "INS-DAY-20261111-001",
+    "status": "VERIFIED",
+    "topic": "purchase_only_goal",
+    "claim": "PMax campaignConversionGoal ADD_TO_CART~WEBSITE biddable true→false, scope only campaign 24244298528; purchase remains biddable. Agent verified raw Google API. Separate connector readback confirmed ENABLED and 42 CNY daily, not the conversion-goal field.",
+    "scope": {
+      "campaign_id": "24244298528",
+      "account_id": "7828819394",
+      "start_local": "2026-11-11T05:12:28-03:00"
+    },
+    "unit": "campaign_conversion_goal_bool",
+    "sources": [
+      "user_agent_report:T05-FIX",
+      "conversation:scoped_approval",
+      "Supermetrics:campaign_resource_get"
+    ],
+    "limitations": [
+      "Exact goal field not independently read through this assistant connection",
+      "11 Nov is mixed pre/post-change day"
+    ],
+    "invalid_inference": "All Ads conversions are now purchases or campaign was paused",
+    "evidence_qualification": "VERIFIED_BY_EXECUTING_AGENT_AND_TARGETED_CONNECTOR_READBACK"
+  },
+  {
+    "id": "INS-DAY-20261111-002",
+    "status": "VERIFIED",
+    "topic": "real_purchases",
+    "claim": "All 4 historical Shopify paid orders were confirmed internal tests; real customer paid orders=0 and real customer revenue=0 CLP as of this review.",
+    "scope": {
+      "order_references": [
+        "maxsensual1001",
+        "maxsensual1002",
+        "maxsensual1003",
+        "maxsensual1004"
+      ],
+      "amounts_clp": [
+        3301,
+        3301,
+        4000,
+        4693
+      ],
+      "total_clp": 15295
+    },
+    "unit": "order_count_and_CLP",
+    "sources": [
+      "operator_confirmation:T05-FIX"
+    ],
+    "limitations": [
+      "Historical cutoff applies; check new orders live"
+    ],
+    "invalid_inference": "PAID or test=false proves external purchase",
+    "evidence_qualification": "VERIFIED_BY_MERCHANT"
+  },
+  {
+    "id": "INS-DAY-20261111-003",
+    "status": "OBSERVED",
+    "topic": "funnel_denominators",
+    "claim": "Shopify syndicatedsearch.goog 1097 sessions, 473 sessions with cart additions, 467 reaching checkout (Oct29-Nov11). GA4 same general window total 2732 sessions, 141 add_to_cart events, 83 checkouts and 1 test purchase. Session-with-cart and GA4 event are non-comparable units.",
+    "scope": {
+      "date_range": "2026-10-29/2026-11-11",
+      "business_timezone": "America/Santiago"
+    },
+    "unit": "shopify_session_vs_ga4_event",
+    "sources": [
+      "user_agent_report:T06",
+      "ShopifyQL_and_GA4_connector_analysis"
+    ],
+    "limitations": [
+      "Different instruments/source attribution, processing windows, consent and event coverage",
+      "No person-level causal path established"
+    ],
+    "invalid_inference": "473-141 missing events implies bot or Pixel bug"
+  },
+  {
+    "id": "INS-DAY-20261111-004",
+    "status": "INCONCLUSIVE",
+    "topic": "payment_attempts",
+    "claim": "ShopifyQL payment_attempts report returned zero for a window containing a known merchant payment test; field coverage is unresolved.",
+    "scope": {
+      "date_range": "2026-11-01/2026-11-10"
+    },
+    "unit": "payment_attempts_in_one_dataset",
+    "sources": [
+      "connected_ShopifyQL",
+      "agent_report:T06"
+    ],
+    "limitations": [
+      "ShopifyQL query and external processor semantics differ"
+    ],
+    "invalid_inference": "No visitor tried to pay"
+  },
+  {
+    "id": "INS-DAY-20261111-005",
+    "status": "VERIFIED",
+    "topic": "pmax_placement_denominator",
+    "claim": "Corrected placement audit Oct29-Nov10: 353 mobile-app / 2701 enumerated placements=13.1%; 353 / 4835 all PMax impressions=7.3%. Earlier 99% claim used all-time (mostly Sep-Oct) and is rejected.",
+    "scope": {
+      "date_range": "2026-10-29/2026-11-10",
+      "campaign_id": "24244298528",
+      "app_placements": 353,
+      "website_placements": 2348,
+      "placement_denominator": 2701,
+      "network_impressions": 4835
+    },
+    "unit": "impressions",
+    "sources": [
+      "user_agent_report:T07-R"
+    ],
+    "limitations": [
+      "Placement data does not enumerate all network impressions",
+      "App placement network is Display/CONTENT, not Search Partners"
+    ],
+    "invalid_inference": "Search Partners traffic is mostly game apps",
+    "evidence_qualification": "VERIFIED_CORRECTION"
+  },
+  {
+    "id": "INS-DAY-20261111-006",
+    "status": "OBSERVED",
+    "topic": "pmax_network_mix",
+    "claim": "PMax Oct29-Nov10 network summary: Search Partners 2753 impressions/1582 clicks/275.6155 CNY, Google Search 556/58/102.149 CNY, Display 1526/70/5.9252 CNY; attributed conversions 37 were add_to_cart, no genuine purchases verified.",
+    "scope": {
+      "date_range": "2026-10-29/2026-11-10",
+      "campaign_id": "24244298528"
+    },
+    "unit": "impressions_clicks_CNY",
+    "sources": [
+      "user_agent_report:T05-T07"
+    ],
+    "limitations": [
+      "Filtered invalid clicks are not to be deducted from already charged click counts",
+      "Unusual partner CTR is a diagnostic signal, not bot proof"
+    ],
+    "invalid_inference": "Partner CTR proves fraud"
+  },
+  {
+    "id": "INS-DAY-20261111-007",
+    "status": "REJECTED",
+    "topic": "pixel_gap_hypothesis",
+    "claim": "The assertion that Google & YouTube App Pixel does not emit collection-page add_to_cart was falsified by controlled production test and rollback: baseline emitted 1 app event, patched state 1 app+1 custom event.",
+    "scope": {
+      "pixel_id": "236847382",
+      "ga4_measurement_id": "G-KZTS0LPC31"
+    },
+    "unit": "network_event_per_successful_quick_add",
+    "sources": [
+      "user_agent_report:T08-PROD",
+      "agent_rebound_network_comparison"
+    ],
+    "limitations": [
+      "Evidence from limited controlled browser session; not proof every browser always sends"
+    ],
+    "invalid_inference": "GA4 collection-page add_to_cart requires new Custom Pixel sender"
+  },
+  {
+    "id": "INS-DAY-20261111-008",
+    "status": "OBSERVED",
+    "topic": "pixel_rollback",
+    "claim": "Custom Pixel v5 deployment produced duplicate GA4 add_to_cart and saved-body SHA mismatch. Agent restored exactly baseline 6649-character body SHA 794a439c…e5477c and verified one app event; current reported pixel revision @10.",
+    "scope": {
+      "pixel_id": "236847382",
+      "sha_original": "794a439c4b0ea1fd9341d98d0e9864d64ce062bb03857fcafc9096c5b7e5477c",
+      "sha_candidate": "4e279447ec47d6e2e6cca47940d4152673d7d820b7865851a3fd919e7d44b563",
+      "sha_actual_saved": "ddbfca44dd1b0c0701e8a7b818760e5b159fd43bf0d33d8b747fb594240da280"
+    },
+    "unit": "sha256_event_count",
+    "sources": [
+      "user_agent_report:T08-PROD"
+    ],
+    "limitations": [
+      "This assistant did not independently read live Custom Pixel source",
+      "Reported UTC timestamps are chronologically inconsistent with conversation wall clock; verify original clock separately"
+    ],
+    "invalid_inference": "Successful save means approved exact source code was deployed",
+    "evidence_qualification": "OBSERVED_AND_AGENT_VERIFIED"
+  },
+  {
+    "id": "INS-DAY-20261111-009",
+    "status": "OBSERVED",
+    "topic": "ga4_identity_fragmentation",
+    "claim": "Original two Custom Pixels used self-issued msx_vid/msx_sid; PDP GA4 uses _ga and GA4 session cookie. A separately constructed event without matching cid/sid can fragment attribution.",
+    "scope": {
+      "pixel_ids": [
+        "236847382",
+        "237568278"
+      ],
+      "ga4_measurement_id": "G-KZTS0LPC31"
+    },
+    "unit": "cid_sid",
+    "sources": [
+      "user_agent_report:T08-R1"
+    ],
+    "limitations": [
+      "Cookie parsing and initial consent state require real runtime verification",
+      "No new sender should be added because standard app sender is already present"
+    ],
+    "invalid_inference": "A 200 response from /g/collect proves same-session attribution"
+  },
+  {
+    "id": "INS-DAY-20261111-010",
+    "status": "VERIFIED",
+    "topic": "recommendation_run",
+    "claim": "GitHub private recommendation engine rules_v1 rerun #4 attempt 2 completed successfully with APPLY=false; 26 placements, 0 publish blockers, plan id 02a5e78282e8b0a27c1df9f3; msx-state applications remained empty.",
+    "scope": {
+      "repo": "hding12/maxsensual-recs",
+      "run_id": 43004092227,
+      "run_attempt": 2,
+      "readback_time_utc": "2026-11-11T10:49:05Z"
+    },
+    "unit": "dry_run_not_publication",
+    "sources": [
+      "github:actions/runs/43004092227",
+      "github:msx-state/plan.json",
+      "github:msx-state/state.json"
+    ],
+    "limitations": [
+      "Plan alone is not proof of Shopify customer-facing publication",
+      "Newer technical repo activity may occur independently"
+    ],
+    "invalid_inference": "0 publish blockers means published",
+    "evidence_qualification": "VERIFIED_GITHUB_READBACK"
+  },
+  {
+    "id": "INS-DAY-20261111-011",
+    "status": "OBSERVED",
+    "topic": "posthog_qa",
+    "claim": "Private recommendation repository reported PostHog internal QA in unpublished preview theme: 5 homepage impressions + 1 click and 3 collection impressions; feedback learning remains disabled/ineligible.",
+    "scope": {
+      "repo": "hding12/maxsensual-recs",
+      "posthog_project_id": "727654",
+      "qa_theme_id": "191875711254"
+    },
+    "unit": "internal_qa_events",
+    "sources": [
+      "github:docs/POSTHOG-QA-2026-11-11.zh-CN.md"
+    ],
+    "limitations": [
+      "Internal QA not eligible training or conversion data; no live customer-facing theme change proven"
+    ],
+    "invalid_inference": "QA impressions are real customer preference",
+    "evidence_qualification": "OBSERVED_GITHUB_EVIDENCE"
+  },
+  {
+    "id": "INS-DAY-20261111-012",
+    "status": "VERIFIED",
+    "topic": "growth_control_install",
+    "claim": "Public market repo commit a851497 added 7 files and GitHub Actions validation passed 3 modules/2 experiments/5 tasks. Current control data are snapshots/advisory, not live API or automatic cross-repo locking.",
+    "scope": {
+      "repo": "hding12/shopify-analytics",
+      "commit": "a851497f03e8253493c43aa1c95b29bf187da9e9",
+      "workflow_run_id": 43012873391
+    },
+    "unit": "git_commit_ci_state",
+    "sources": [
+      "github:commit/a851497f03e8253493c43aa1c95b29bf187da9e9",
+      "github:actions/runs/43012873391"
+    ],
+    "limitations": [
+      "AGENTS.md and top-level README did not yet link control/",
+      "No technical repo write or automatic policy enforcement"
+    ],
+    "invalid_inference": "Control JSON approval flag creates platform-side lock",
+    "evidence_qualification": "VERIFIED_GITHUB_READBACK"
+  },
+  {
+    "id": "INS-DAY-20261111-013",
+    "status": "INCONCLUSIVE",
+    "topic": "pmax_channel_prioritization",
+    "claim": "Google Ads PMax channel-prioritization/budget-allocation control could not be confirmed available in this account. API query returned UNRECOGNIZED_FIELD and UI observation insufficient.",
+    "scope": {
+      "account_id": "7828819394",
+      "campaign_id": "24244298528"
+    },
+    "unit": "feature_availability",
+    "sources": [
+      "agent_report:T07-R"
+    ],
+    "limitations": [
+      "An unrecognized API field is not proof the UI feature does not exist"
+    ],
+    "invalid_inference": "Feature definitively unavailable"
+  },
+  {
+    "id": "INS-DAY-20261111-014",
+    "status": "REJECTED",
+    "topic": "alltime_mobile_app_in_current_period",
+    "claim": "Earlier claim that approximately 99% of CURRENT PMax impressions were mobile-game placements used an all-time placement window heavily weighted to 2026-09-13/10-17. Correct current-window mobile-app share is 353/2701 enumerated placements or 353/4835 all-network impressions.",
+    "scope": {
+      "campaign_id": "24244298528",
+      "correct_window": "2026-10-29/2026-11-10"
+    },
+    "unit": "placement_impressions_vs_network_impressions",
+    "sources": [
+      "user_agent_report:T07-R",
+      "INS-DAY-20261111-005"
+    ],
+    "limitations": [
+      "Different report coverage and denominator"
+    ],
+    "invalid_inference": "Current Search Partners mostly mobile games"
+  },
+  {
+    "id": "INS-DAY-20261111-015",
+    "status": "REJECTED",
+    "topic": "cross_platform_missing_atc_arithmetic",
+    "claim": "Subtracting GA4 add_to_cart event count from Shopify sessions with cart additions is not a valid missing-event estimate; a session and an event are different units, and identity/attribution scopes differ.",
+    "scope": {
+      "period": "2026-10-29/2026-11-11"
+    },
+    "unit": "noncomparable_session_vs_event",
+    "sources": [
+      "T06_report",
+      "INS-DAY-20261111-003"
+    ],
+    "limitations": [
+      "Separate events-per-session user linkage not established"
+    ],
+    "invalid_inference": "Simple cross-platform subtraction proves fake carts"
+  },
+  {
+    "id": "INS-DAY-20261111-016",
+    "status": "OBSERVED",
+    "topic": "promo_item_price_vs_pdp_display",
+    "claim": "T08 agent observed PDP GA4 item pr=30938 CLP while discounted page price displayed 21657 CLP under 30% automatic promotion. A strong lineTotal == merchandise.unit*quantity assertion is unsafe under such discounts.",
+    "scope": {
+      "ga4_measurement_id": "G-KZTS0LPC31",
+      "date": "2026-11-11"
+    },
+    "unit": "CLP_price_per_item",
+    "sources": [
+      "user_agent_report:T08-FINAL"
+    ],
+    "limitations": [
+      "This comparison does not identify correct GA4 revenue/value implementation or final paid order amount"
+    ],
+    "invalid_inference": "Network item value equals cash paid or contribution profit"
+  },
+  {
+    "id": "INS-DAY-20261111-017",
+    "status": "OBSERVED",
+    "topic": "consent_policy_and_pixel_runtime",
+    "claim": "Agent reported CL consentPolicy consentRequired=false and no visible banner; two existing custom Pixel scripts had no explicit consent keyword. That is not proof of either a consent breach or unconditional analytics availability.",
+    "scope": {
+      "region": "CL",
+      "policy_rows_reported": 245,
+      "consentRequired_false_rows_reported": 245
+    },
+    "unit": "privacy_setting_and_script_observation",
+    "sources": [
+      "user_agent_report:T08-R1"
+    ],
+    "limitations": [
+      "Denied consent state was not fully tested in production",
+      "Shopify platform-level pixel gating differs from code-level checks"
+    ],
+    "invalid_inference": "Always track regardless of runtime customer privacy",
+    "evidence_qualification": "OBSERVED_WITH_RUNTIME_LIMITATIONS"
+  }
+]

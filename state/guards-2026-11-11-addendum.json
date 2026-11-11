@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "as_of_business_date": "2026-11-11",
+  "business_timezone": "America/Santiago",
+  "classification": "PUBLIC_HISTORICAL_SNAPSHOT_NOT_LIVE_PERMISSION",
+  "operational_source_of_truth": "Google Ads/Shopify/GitHub current API readback; user explicit scoped authorization for writes",
+  "constraints": [
+    {
+      "id": "GUARD-DAY-001",
+      "type": "SCOPED_USER_AUTHORIZATION",
+      "resource": "google_ads:campaign:24244298528",
+      "rule": "Only campaign ADD_TO_CART~WEBSITE biddable=false was approved/applied in B-min; Purchase remains biddable. No inferred budget, other campaign, account goal or status edit is authorized.",
+      "source": "DEC-DAY-20261111-001"
+    },
+    {
+      "id": "GUARD-DAY-002",
+      "type": "EXPERIMENT_APPROVAL_GATE",
+      "resource": "shopify:collection:*|shopify:home:*|shopify:theme:*|shopify:pixel:*",
+      "rule": "If PMax purchase-only experiment is active, check cross-experiment customer-facing impact and require explicit change approval plus new measurement boundary. Advisory, not remote technical lock.",
+      "source": "control/experiments.json"
+    },
+    {
+      "id": "GUARD-DAY-003",
+      "type": "EXPLICIT_USER_NO_CHANGE",
+      "resource": "repository:hding12/maxsensual-recs",
+      "rule": "Recommendation repository is READ_ONLY_REFERENCE_ONLY; no commits, dispatch, publishing or scheduler changes until revised user instruction.",
+      "source": "DEC-DAY-20261111-005"
+    },
+    {
+      "id": "GUARD-DAY-004",
+      "type": "NO_AUTOMATIC_SPEND",
+      "resource": "google_ads:campaign:24459774700",
+      "rule": "G2X stays paused until actual creative approval/limited, verified fulfillment and separate spend authorization. 175 CNY campaign-total and intended CPC 4.11 CNY are historical config, not new permission.",
+      "source": "state/constraints.yaml"
+    },
+    {
+      "id": "GUARD-DAY-005",
+      "type": "CONSUMER_REVENUE_TRUTH",
+      "resource": "analytics:real_customer_orders",
+      "rule": "Exclude four merchant-paid QA orders from validated consumer orders, CAC, conversion and ROAS; preserve separate accounting. Unknown orders remain UNKNOWN until positive independent evidence.",
+      "source": "DEC-DAY-20261111-002"
+    },
+    {
+      "id": "GUARD-DAY-006",
+      "type": "SINGLE_PRODUCER_EVENT",
+      "resource": "shopify:pixel:*",
+      "rule": "Before proposing a new ecommerce event sender, inventory ALL existing Google & YouTube, custom, theme, GTM and checkout sources; verify actual requests, same-session identity, receiving GA4, and consent. No duplicate add_to_cart sender without independently proved gap and approval.",
+      "source": "docs/incidents/T08-2026-11-11-production-rollback.md"
+    },
+    {
+      "id": "GUARD-DAY-007",
+      "type": "EXACT_DEPLOYMENT_HASH",
+      "resource": "shopify:custom_pixel:*",
+      "rule": "Before write verify raw editable baseline, after write verify a pre-agreed canonicalized representation. If post-write SHA mismatches authorized expected form and platform wrapper was not pre-agreed, stop and roll back before further testing.",
+      "source": "docs/incidents/T08-2026-11-11-production-rollback.md"
+    },
+    {
+      "id": "GUARD-DAY-008",
+      "type": "READ_ONLY_RECOMMENDATION_TRIAL",
+      "resource": "repository:hding12/maxsensual-recs",
+      "rule": "Prior dry-run success and publish_blocks=[] are not Shopify publication; current snapshot publishing_enabled=false, state applications=[] and feedback learning disabled.",
+      "source": "INS-DAY-20261111-010"
+    },
+    {
+      "id": "GUARD-DAY-009",
+      "type": "METRIC_DIMENSION_INVARIANT",
+      "resource": "analytics:cross_platform",
+      "rule": "Do not subtract Shopify sessions-with-cart from GA4 add_to_cart events; keep Google Ads attributed conversions, app placement impressions, network impressions, rejected bot classifications and cost units distinct.",
+      "source": "docs/measurement-2026-11-11-addendum.md"
+    },
+    {
+      "id": "GUARD-DAY-010",
+      "type": "INCOMPLETE_PRODUCTION_TIME_EVIDENCE",
+      "resource": "incident:T08",
+      "rule": "Agent-reported deployment/rollback UTC timestamps conflict with known chat wall clock; preserve verbatim as disputed and independently validate original ISO timestamps before putting on immutable official timeline.",
+      "source": "docs/incidents/T08-2026-11-11-production-rollback.md"
+    }
+  ],
+  "review_policy": "Reconcile snapshots with actual API state before any operation; never treat this file as standing authorization."
+}

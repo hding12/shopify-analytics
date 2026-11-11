@@ -1,0 +1,148 @@
+[
+  {
+    "id": "DEC-DAY-20261111-001",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "google_ads:campaign:24244298528",
+    "decision": "With explicit user authorization, only ADD_TO_CART~WEBSITE campaignConversionGoal biddable true→false; maintain Purchase WEBSITE biddable true, PMax ENABLED and 42 CNY/day.",
+    "authorizer": "user",
+    "authorization_kind": "exact_one_resource_one_field",
+    "effective_at_local": "2026-11-11T05:12:28-03:00",
+    "review": "14 days or incremental 300 CNY, first, MANUAL ONLY",
+    "evidence": [
+      "RUN-DAY-20261111-001",
+      "RUN-DAY-20261111-002"
+    ],
+    "limitations": [
+      "Remaining campaign settings not changed"
+    ],
+    "status_note": "APPLIED_AND_AGENT_READBACK_VERIFIED",
+    "implementation_status": "READBACK_VERIFIED"
+  },
+  {
+    "id": "DEC-DAY-20261111-002",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "shopify:orders:historical_four",
+    "decision": "Classify historical four merchant-paid orders as internal QA; keep financial records, exclude from validated-customer orders, CAC, ROAS and demand conclusions.",
+    "authorizer": "operator_confirmation",
+    "authorization_kind": "classification_not_platform_write",
+    "evidence": [
+      "RUN-DAY-20261111-003"
+    ],
+    "limitations": [
+      "Reclassify only with new positive contrary evidence"
+    ],
+    "status_note": "ACTIVE_ACCOUNTING_CLASSIFICATION",
+    "implementation_status": "APPROVED"
+  },
+  {
+    "id": "DEC-DAY-20261111-003",
+    "date": "2026-11-11",
+    "status": "SUPERSEDED",
+    "scope": "shopify:custom_pixel:236847382",
+    "decision": "User authorized v5 one-pixel controlled deployment after code review; deployment was executed, generated duplicate event and hash mismatch, and was rolled back.",
+    "authorizer": "user",
+    "authorization_kind": "scoped_production_approval_for_v5_only",
+    "evidence": [
+      "RUN-DAY-20261111-011",
+      "RUN-DAY-20261111-012",
+      "RUN-DAY-20261111-014"
+    ],
+    "limitations": [
+      "Authorization expired with rollback, not transferable to another candidate"
+    ],
+    "status_note": "SUPERSEDED_BY_ROLLBACK",
+    "implementation_status": "ROLLED_BACK"
+  },
+  {
+    "id": "DEC-DAY-20261111-004",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "shopify:pixel:*",
+    "decision": "Do not repeat custom collection add_to_cart supplement based on an unverified missing-pixel premise; confirm existing Google & YouTube App Pixel producer before changing ecommerce events.",
+    "authorizer": "growth_review",
+    "authorization_kind": "risk_restriction",
+    "evidence": [
+      "RUN-DAY-20261111-013",
+      "RUN-DAY-20261111-015"
+    ],
+    "limitations": [
+      "This does not prohibit a separately justified future scoped fix"
+    ],
+    "status_note": "ACTIVE_CAUTION_NOT_NEW_PRODUCTION_AUTHORIZATION",
+    "implementation_status": "APPROVED"
+  },
+  {
+    "id": "DEC-DAY-20261111-005",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "repository:hding12/maxsensual-recs",
+    "decision": "Keep recommendation repository unchanged for now; market control may read references only. No cross-repo agent integration, publishing or scheduler changes.",
+    "authorizer": "user",
+    "authorization_kind": "explicit_no_change_constraint",
+    "evidence": [
+      "RUN-DAY-20261111-017",
+      "RUN-DAY-20261111-020"
+    ],
+    "limitations": [
+      "Earlier read-only dry run was independently performed before this restriction; no follow-up jobs should be triggered without new permission"
+    ],
+    "status_note": "ACTIVE_USER_INSTRUCTION",
+    "implementation_status": "APPROVED"
+  },
+  {
+    "id": "DEC-DAY-20261111-006",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "shopify:collection:*|shopify:home:*",
+    "decision": "Customer-facing recommendation reordering can confound active PMax experiment; keep calculated plans separate from Shopify publication, require change scope and experiment boundary approval.",
+    "authorizer": "growth_review_plus_user_control_initiative",
+    "authorization_kind": "advisory_not_remote_lock",
+    "evidence": [
+      "RUN-DAY-20261111-016",
+      "RUN-DAY-20261111-020"
+    ],
+    "limitations": [
+      "Approval requirement is not a hard automatic freeze; urgent inventory correction can be proposed with scoped approval"
+    ],
+    "status_note": "ACTIVE_APPROVAL_GATE",
+    "implementation_status": "APPROVED"
+  },
+  {
+    "id": "DEC-DAY-20261111-007",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "repository:hding12/shopify-analytics",
+    "decision": "Retain two repositories. Public shopify-analytics is growth decision/evidence index; private maxsensual-recs is independent technical implementation. No new infrastructure or automatic bi-directional sync.",
+    "authorizer": "user",
+    "authorization_kind": "architecture_decision",
+    "evidence": [
+      "RUN-DAY-20261111-020"
+    ],
+    "limitations": [
+      "Public snapshot is historical; external APIs are live authority"
+    ],
+    "status_note": "ACTIVE_ARCHITECTURE",
+    "implementation_status": "APPROVED"
+  },
+  {
+    "id": "DEC-DAY-20261111-008",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "scope": "measurement:collection_quick_add",
+    "decision": "Reject the earlier assertion that collection quick-add events lack an App Pixel GA4 sender. Production test showed existing App sender and double count when custom sender was added.",
+    "authorizer": "evidence_based_review",
+    "authorization_kind": "epistemic_correction",
+    "evidence": [
+      "RUN-DAY-20261111-013",
+      "RUN-DAY-20261111-015"
+    ],
+    "limitations": [
+      "Do not extrapolate one browser scenario to all cohorts"
+    ],
+    "status_note": "REJECTED_CLAIM",
+    "claim_review_status": "REJECTED",
+    "implementation_status": "APPROVED"
+  }
+]

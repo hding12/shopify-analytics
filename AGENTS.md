@@ -1,5 +1,19 @@
 # AGENTS.md — MaxSensual Analytics
 
+<!-- growth-day-audit-2026-11-11:start -->
+## ⚠ 入口优先级：活跃实验与今天已证实的反例
+
+**所有新任务开始时**先读 `control/README.md`、`control/experiments.json`、`control/tasks.json`、`records/daily/2026-11-11-full-review.md`、`state/guards-2026-11-11-addendum.json`，再按原 `AGENTS.md` 的领域口径/来源验证/审批流程执行。
+
+- 市场仓库是 **historical/advisory control index**，真实 Google Ads/Shopify/API 最新状态需单独读回；不能把 Git JSON 当成授权。
+- PMax Purchase-only 实验起点 2026-11-11 05:12:28 America/Santiago；变更影响顾客页面、推荐集合或 Pixel 时检查实验冲突与独立用户审批。300 CNY/14 天为人工复核条件，绝非自动停投。
+- **用户当前明确要求不动推荐技术仓库** `hding12/maxsensual-recs`：允许只读参照，禁止提交、触发 Actions、启用发布或修改调度，除非用户另行明确授权。
+- T08 “集合页 App Pixel 不会发 ATC”已被生产数据否定。**先列全所有标准电子商务事件发送者，再提任何补发方案**。Custom Pixel v5 部署失败且已由执行 Agent 报告精确回滚，禁止以旧授权重试。
+- 生产发布后 hash 未匹配授权的**预定义比较表示**时，立刻停止/回滚，不得事后自行放宽；T08 的时钟记录有冲突，只保留为有争议的 Agent 报告。
+- 4 笔历史 PAID 单均经用户确认是测试，真实消费者订单/收入当时为 0；Shopify session-with-cart ≠ GA4 ATC event ≠ Ads conversion。
+- 今日完整操作参见 `records/runs/2026-11-11-operations-addendum.jsonl`；从构想→审批→执行→验证→回滚严格分层。
+<!-- growth-day-audit-2026-11-11:end -->
+
 ## 1. 数据口径原则
 
 - Shopify Analytics、GA4、Google Ads 使用不同的数据模型，不得直接混用统计结果。
