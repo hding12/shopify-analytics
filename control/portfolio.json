@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "project": "MaxSensual",
+  "control_repo": "hding12/shopify-analytics",
+  "business_timezone": "America/Santiago",
+  "snapshot_as_of_date": "2026-11-11",
+  "state_policy": "HISTORICAL_OBSERVATION_NOT_LIVE_AUTHORITY",
+  "business_goals": {
+    "primary": "independently_verified_non_test_customer_orders",
+    "secondary": "positive_contribution_profit_after_variable_costs_and_ad_spend",
+    "sourced_catalog": "bounded_cost_of_market_information"
+  },
+  "modules": [
+    {
+      "id": "acquisition",
+      "display_name": "Paid acquisition and purchase verification",
+      "execution_system": "Google Ads + Shopify + GA4 + Supermetrics",
+      "status_at_snapshot": "RUNNING",
+      "active_experiments": ["EXP-PMAX-PURCHASE-ONLY-20261111"],
+      "observed_facts": {
+        "pmax_campaign_id": "24244298528",
+        "pmax_status": "ENABLED",
+        "pmax_daily_budget": 42,
+        "pmax_budget_currency": "CNY",
+        "pmax_conversion_goal_change": "ADD_TO_CART_WEBSITE_BIDDABLE_FALSE_CAMPAIGN_LEVEL",
+        "verified_real_customer_orders": 0
+      },
+      "facts_source": "operator_and_agent_readback_plus_shopify_and_supermetrics_queries",
+      "live_readback_required_before_change": true
+    },
+    {
+      "id": "recommendations",
+      "display_name": "Recommendation engine and Shopify collection ordering",
+      "execution_repo": "hding12/maxsensual-recs",
+      "execution_repo_visibility": "PRIVATE",
+      "status_at_snapshot": "DRY_RUN_READY_NOT_PUBLISHED",
+      "last_dry_run": {
+        "business_date": "2026-11-11",
+        "plan_id": "02a5e78282e8b0a27c1df9f3",
+        "placements": 26,
+        "publish_blocks": 0,
+        "apply": false,
+        "workflow_run_url": "https://github.com/hding12/maxsensual-recs/actions/runs/43004092227"
+      },
+      "publishing_enabled_at_snapshot": false,
+      "feedback_learning_enabled_at_snapshot": false,
+      "coordination_mode": "READ_ONLY_REFERENCE_ONLY",
+      "live_readback_required_before_change": true
+    },
+    {
+      "id": "measurement",
+      "display_name": "GA4, Shopify events and experiment attribution",
+      "status_at_snapshot": "STABLE_WITH_KNOWN_MEASUREMENT_LIMITATIONS",
+      "last_pixel_incident": {
+        "id": "INC-T08-20261111",
+        "outcome": "ROLLED_BACK_VERIFIED_BY_EXECUTING_AGENT",
+        "source": "executing_agent_report_not_independently_readback_here",
+        "notes": "Custom Pixel add_to_cart created duplicate with existing Google and YouTube app pixel; exact original body SHA reportedly restored. Do not retry add_to_cart patch without a new independently verified requirement."
+      },
+      "live_readback_required_before_change": true
+    }
+  ],
+  "operating_rules": [
+    "This public repository records business decisions; external platform API remains the live operational authority.",
+    "Never treat a dry run or approved proposal as a published change.",
+    "Any change affecting an active experiment's customer-facing environment requires scoped approval and a new measurement boundary.",
+    "No automated change to the recommendations repository is authorized by this control snapshot.",
+    "No tokens, customer PII, payment evidence or raw checkout URLs in public records."
+  ]
+}

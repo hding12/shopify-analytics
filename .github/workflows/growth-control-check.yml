@@ -1,0 +1,24 @@
+name: Validate growth control
+on:
+  push:
+    paths:
+      - 'control/**'
+      - 'scripts/growth_control.py'
+      - '.github/workflows/growth-control-check.yml'
+  pull_request:
+    paths:
+      - 'control/**'
+      - 'scripts/growth_control.py'
+      - '.github/workflows/growth-control-check.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 scripts/growth_control.py validate
+      - run: python3 scripts/growth_control.py status

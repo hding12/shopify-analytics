@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-11-11",
+  "tasks": [
+    {
+      "id": "T05",
+      "title": "Observe PMax Purchase-only on clean business days",
+      "owner": "growth",
+      "status": "OBSERVING",
+      "experiment_id": "EXP-PMAX-PURCHASE-ONLY-20261111",
+      "permission": "READ_ONLY",
+      "next_action": "Read full 2026-11-12 and subsequent Santiago business days, track verified real orders and post-change CNY spend.",
+      "decision_gate": "Manual review at incremental 300 CNY or 14 days, whichever comes first; not an automated budget cap."
+    },
+    {
+      "id": "REC-20261111-DRYRUN",
+      "title": "Fresh rules_v1 recommendation dry run",
+      "owner": "recommendations",
+      "status": "READBACK_VERIFIED_DRY_RUN",
+      "experiment_id": "EXP-RECS-RULES-V1",
+      "permission": "READ_ONLY",
+      "result_ref": "https://github.com/hding12/maxsensual-recs/actions/runs/43004092227",
+      "result": "26 placements, 0 publish blockers, APPLY=false, Shopify publication not performed.",
+      "next_action": "None until the growth lead approves an independent, scoped publish experiment."
+    },
+    {
+      "id": "REC-PUBLICATION-APPROVAL",
+      "title": "Coordinate first customer-facing recommendation release",
+      "owner": "growth",
+      "status": "ON_HOLD",
+      "experiment_id": "EXP-RECS-RULES-V1",
+      "permission": "READ_ONLY",
+      "dependency": "EXP-PMAX-PURCHASE-ONLY-20261111",
+      "next_action": "Reassess after PMax review; first propose affected collections and exact experiment boundary, do not enable publish automatically.",
+      "required_approval": "Explicit scoped approval for Shopify collection membership, order or theme modification."
+    },
+    {
+      "id": "INC-T08-20261111",
+      "title": "Custom Pixel add_to_cart duplication and rollback",
+      "owner": "measurement",
+      "status": "ROLLED_BACK_AGENT_VERIFIED",
+      "permission": "READ_ONLY",
+      "result": "Executing agent reported exact rollback of Custom Pixel 236847382 after duplicate GA4 add_to_cart events.",
+      "next_action": "Preserve incident history and avoid repeating unverified fix. No live Pixel change authorized."
+    },
+    {
+      "id": "G2X-START-GATE",
+      "title": "G2X launch readiness",
+      "owner": "growth",
+      "status": "NO_GO",
+      "permission": "READ_ONLY",
+      "next_action": "Recheck ad review and fulfillment; do not enable campaign without separate spend authorization."
+    }
+  ]
+}
