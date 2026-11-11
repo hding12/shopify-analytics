@@ -1,0 +1,47 @@
+# PUBLIC historical snapshot (operator approved). VERIFY LIVE before execution; never use these as current authorization or state.
+as_of_date: '2026-11-11'
+business_timezone: America/Santiago
+store_currency: CLP
+ads_currency: CNY
+business_objectives:
+  own_stock: real_customer_contribution_profit
+  sourced_products: bounded_cost_of_market_information
+live_gates_at_last_report:
+  g2_search:
+    campaign_id: '24447529143'
+    intended_daily_budget_cny: 120
+    max_click_cpc_cny: 4.11
+    search_partners_enabled: false
+    campaign_paused: false
+  pmax_keep_enabled:
+    campaign_id: '24244298528'
+    daily_budget_cny: 42
+    requires_explicit_authorization_to_change: true
+  g2x_market_probe:
+    campaign_id: '24459774700'
+    budget_type: CAMPAIGN_TOTAL
+    lifetime_budget_cny: 175
+    max_click_cpc_cny: 4.11
+    geo_target_type: PRESENCE
+    status_at_last_report: PAUSED
+    ad_review_at_last_report: REVIEW_IN_PROGRESS
+    do_not_enable_before_ad_approval: true
+  ag_b:
+    ad_group_id: '202747853195'
+    ad_id: '831286604810'
+    status_at_last_report: PAUSED
+    ad_review_at_last_report: REVIEW_IN_PROGRESS
+shopify:
+  global_promo_percent: 30
+  ends_at_utc: '2026-12-01T02:59:59Z'
+  shipping_discount_stacking: INCONCLUSIVE
+  do_not_promote_g2par2_during_auto_discount: true
+  do_not_run_collection_ranking_script_without_coordination: true
+explicit_exclusions:
+  - no_ExoClick_recharge
+  - no_MercadoLibre_adult_listings
+  - no_wholesale_supplier_outreach_this_phase
+  - no_unverified_App_claims_in_ad_copy
+security:
+  source_repo_is_public: true
+  published_with_operator_authorization: true

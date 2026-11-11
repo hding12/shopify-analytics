@@ -1,0 +1,13 @@
+# Locally retained raw network/platform captures and confidential materials
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+credentials/
+secrets/
+raw-evidence/
+raw-snapshots/
+**/*checkout-token*.txt
+.DS_Store

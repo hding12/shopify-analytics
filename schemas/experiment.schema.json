@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GrowthExperiment",
+  "type": "object",
+  "required": [
+    "id",
+    "track",
+    "hypothesis",
+    "primary_metric",
+    "guardrails",
+    "budget",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "track": {
+      "enum": [
+        "own_stock_profit",
+        "sourced_market_discovery"
+      ]
+    },
+    "hypothesis": {
+      "type": "string"
+    },
+    "primary_metric": {
+      "type": "string"
+    },
+    "secondary_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "amount",
+        "currency",
+        "type"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "type": {
+          "enum": [
+            "DAILY",
+            "CAMPAIGN_TOTAL",
+            "TEST_SPEND_LIMIT"
+          ]
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "BLOCKED",
+        "APPROVED_PAUSED",
+        "RUNNING",
+        "PAUSED",
+        "FINISHED",
+        "SUPERSEDED"
+      ]
+    },
+    "approval_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "linked_decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "start_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "end_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timezone": {
+      "type": "string"
+    }
+  }
+}

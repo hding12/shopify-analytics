@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ADR-G2-001",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "decision": "Own-stock A/B/C are current paid-conversion targets; sourced products are separate bounded demand-discovery track.",
+    "rationale": "Different loss function and purchase-commitment stage; real orders necessary for both.",
+    "supersedes": [
+      "ADR-G2-AG-E-OLD-NOGO"
+    ],
+    "sensitivity": "internal",
+    "source_type": "user_instruction_and_agent_report"
+  },
+  {
+    "id": "ADR-G2-002",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "decision": "Maintain 30% automatic storewide promo through Nov30 Chile; suppress inactive-in-cart G2PAR2 promotion in A/B PDP while leaving code intact.",
+    "rationale": "Non-combinable automatic discount invalidated bundled copy; checkout stacked shipping remains unverified.",
+    "sensitivity": "internal",
+    "source_type": "user_authorized_agent_action"
+  },
+  {
+    "id": "ADR-G2-003",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "decision": "Leave legacy paused Search Campaign and disapproved Logo in place; close non-blocking cleanup.",
+    "rationale": "No demonstrable delivery benefit; deletion unnecessary and destructive.",
+    "sensitivity": "internal",
+    "source_type": "user_agent_report_and_assistant_recommendation"
+  },
+  {
+    "id": "ADR-G2-004",
+    "date": "2026-11-11",
+    "status": "ACTIVE",
+    "decision": "Run G2X sourced egg probe only after RSA approved/limited and exact 175 CNY campaign-total budget, 4.11 CNY CPC, Chile targeting, legitimate fulfillment, purchase tracking.",
+    "rationale": "Buy information with bounded risk, not profit at current dropship price.",
+    "sensitivity": "internal",
+    "source_type": "user_agent_report_and_prior_authorization"
+  },
+  {
+    "id": "ADR-G2-AG-E-OLD-NOGO",
+    "date": "2026-11-11",
+    "status": "SUPERSEDED",
+    "decision": "Reject egg products from paid ads due to negative promotional contribution.",
+    "rationale": "Treating all SKU tests as profit initiatives. Superseded after clarified market-discovery purpose.",
+    "superseded_by": "ADR-G2-001",
+    "sensitivity": "internal",
+    "source_type": "user_agent_report"
+  }
+]

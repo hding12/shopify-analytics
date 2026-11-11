@@ -1,0 +1,66 @@
+[
+  {
+    "id": "INS-MS-001",
+    "status": "OBSERVED",
+    "claim": "First Search impressions included matching small/discreet/lipstick terms, but conversion not yet measured.",
+    "period": "2026-11-10",
+    "source_type": "supermetrics_google_ads_search_terms",
+    "uncertainty": "only 3 clicks; cannot predict conversion"
+  },
+  {
+    "id": "INS-MS-002",
+    "status": "VERIFIED",
+    "claim": "Global 30% promotion overrode G2PAR2 in cart under non-combinability configuration.",
+    "period": "2026-11-11",
+    "source_type": "shopify_api_and_agent_cart_QA",
+    "uncertainty": "free shipping stacking with address remained inconclusive"
+  },
+  {
+    "id": "INS-MS-003",
+    "status": "OBSERVED",
+    "claim": "Non-family-safe Search ads were approved limited yet obtained some impressions and clicks.",
+    "period": "2026-11-10",
+    "source_type": "supermetrics_google_ads_readback",
+    "uncertainty": "no inference of inventory quality or future scale"
+  },
+  {
+    "id": "INS-MS-004",
+    "status": "VERIFIED",
+    "claim": "G2X keyword exemption permitted creation of two previously refused egg product keywords; the RSA still required independent ad review.",
+    "period": "2026-11-11",
+    "source_type": "agent_raw_google_api_report_and_connector_readback",
+    "uncertainty": "keyword eligibility after campaign activation not proven"
+  },
+  {
+    "id": "INS-MS-005",
+    "status": "VERIFIED",
+    "claim": "G2X CPC ceiling micros was accidentally set 100x too high and corrected to 4,110,000 for 4.11 CNY before campaign enable.",
+    "period": "2026-11-11",
+    "source_type": "agent_raw_google_api_report_and_connector_readback",
+    "uncertainty": "actual spend was zero while paused"
+  },
+  {
+    "id": "INS-MS-006",
+    "status": "INCONCLUSIVE",
+    "claim": "Shopify auto free shipping may combine with the order-wide 30% discount for a location-specific checkout.",
+    "period": "2026-11-11",
+    "source_type": "checkout_without_shipping_address",
+    "uncertainty": "shipping method/price not computed until address"
+  },
+  {
+    "id": "INS-MS-007",
+    "status": "OBSERVED",
+    "claim": "One GA4 purchase corresponded to independently confirmed merchant payment test, not a real paid customer.",
+    "period": "2026-11-10",
+    "source_type": "shopify_order_and_GA4",
+    "uncertainty": "does not validate real buyer attribution"
+  },
+  {
+    "id": "INS-MS-008",
+    "status": "OBSERVED",
+    "claim": "Egg-form query close-variant matched a non-egg compact product; scoped exact negatives were adopted.",
+    "period": "2026-11-11",
+    "source_type": "google_search_terms_and_Shopify_SKU",
+    "uncertainty": "one click; not general traffic loss percentage"
+  }
+]

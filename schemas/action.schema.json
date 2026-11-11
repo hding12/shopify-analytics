@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentActionEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "action",
+    "execution_status",
+    "source_kind",
+    "target",
+    "observed_date",
+    "authorization",
+    "verification"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "execution_status": {
+      "enum": [
+        "PROPOSED",
+        "APPROVED",
+        "EXECUTED",
+        "READBACK_VERIFIED",
+        "BLOCKED",
+        "ROLLED_BACK"
+      ]
+    },
+    "source_kind": {
+      "enum": [
+        "user_agent_report",
+        "direct_platform_raw_api",
+        "connector_readback",
+        "browser_observation",
+        "model_derived"
+      ]
+    },
+    "observed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "occurred_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target": {
+      "type": "object"
+    },
+    "authorization": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "before_snapshot_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "after_snapshot_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification": {
+      "type": "object"
+    },
+    "changed_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rollback_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sensitivity": {
+      "enum": [
+        "public",
+        "internal",
+        "restricted"
+      ]
+    }
+  }
+}
