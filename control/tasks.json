@@ -9,7 +9,7 @@
       "status": "OBSERVING",
       "experiment_id": "EXP-PMAX-PURCHASE-ONLY-20261111",
       "permission": "READ_ONLY",
-      "next_action": "Read full 2026-11-12 and subsequent Santiago business days, track verified real orders and post-change CNY spend.",
+      "next_action": "Treat 2026-11-12 Santiago as mixed T13 intervention day; use 2026-11-13 onward only as potentially stable post-T13 whole days, track non-test orders, post-change CNY spend and network mix.",
       "decision_gate": "Manual review at incremental 300 CNY or 14 days, whichever comes first; not an automated budget cap."
     },
     {
@@ -74,6 +74,18 @@
       "evidence_ref": "records/daily/2026-11-12-t12-d06-and-market-priorities.md",
       "next_action": "Only revisit if paid-traffic page LCP P75 >2500ms at >=100 loads, reproducible major INP degradation, or measured external critical image blocking conversions; focus on real purchases first.",
       "scope": "No Shopify theme, catalog, recommendation or supplier image mutation."
+    },
+    {
+      "id": "T13-PROMO-B-20261112",
+      "title": "T13 30 percent plus no-minimum Chile free shipping — production checkout verified",
+      "owner": "growth",
+      "status": "AGENT_REPORTED_COMPLETE",
+      "experiment_id": "EXP-PMAX-PURCHASE-ONLY-20261111",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-12",
+      "evidence_ref": "records/daily/2026-11-12-t13-free-shipping-verified.md",
+      "result": "Shopify discount combination and policy readback verified; executing agent verified four no-payment checkout cases. Earliest discount configuration change UTC 04:34:54, agent full QA UTC 04:48:26.",
+      "next_action": "Observe verified non-test orders, qualified acquisition and contribution margin. Audit post-campaign static discount claims before 2026-12-01 Chile."
     }
   ]
 }

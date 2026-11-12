@@ -11,7 +11,7 @@
       "campaign_id": "24244298528",
       "started_at_utc": "2026-11-11T08:12:28Z",
       "started_at_local": "2026-11-11T05:12:28-03:00",
-      "first_clean_business_day": "2026-11-12",
+      "first_clean_business_day": "2026-11-13",
       "primary_outcome": "verified_non_test_customer_orders",
       "secondary_outcomes": [
         "attributed_purchase_conversions",
@@ -58,8 +58,22 @@
           "effects": "Affects buyer-visible shipping/discount messaging; order/shipping rules unchanged; cannot attribute all post-change conversion variation solely to Purchase-only bidding.",
           "reference": "records/daily/2026-11-12-t12-d06-and-market-priorities.md",
           "pmax_bid_strategy_unchanged": true
+        },
+        {
+          "id": "T13-FREE-SHIPPING-20261112",
+          "classification": "CHECKOUT_ECONOMICS_AND_CUSTOMER_VISIBLE_COPY_CHANGE",
+          "source": "Shopify Admin discount and shipping policy independently read back; checkout and theme QA reported by executing agent",
+          "discount_updated_at_utc": "2026-11-12T04:34:54Z",
+          "agent_reported_full_verification_at_utc": "2026-11-12T04:48:26Z",
+          "shipping_policy_updated_at_utc": "2026-11-12T05:04:45Z",
+          "business_date": "2026-11-12",
+          "effects": "Automatic free standard shipping now combines with 30% order discount without subtotal minimum. This changes final shopper economics during PMax observation; 2026-11-12 is mixed and does NOT support single-variable full-day attribution.",
+          "reference": "records/daily/2026-11-12-t13-free-shipping-verified.md",
+          "pmax_bid_strategy_unchanged": true
         }
-      ]
+      ],
+      "initially_planned_first_clean_business_day": "2026-11-12",
+      "first_clean_business_day_qualification": "Potential first whole day after T13; valid only if no new material interventions; not a pure single-variable comparison with pre-T13."
     },
     {
       "id": "EXP-RECS-RULES-V1",
