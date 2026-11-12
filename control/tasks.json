@@ -50,6 +50,30 @@
       "status": "NO_GO",
       "permission": "READ_ONLY",
       "next_action": "Recheck ad review and fulfillment; do not enable campaign without separate spend authorization."
+    },
+    {
+      "id": "T12-MARKETING-CLOSEOUT-20261112",
+      "title": "T12 approved marketing copy and own-stock inventory policy closeout",
+      "owner": "growth",
+      "status": "AGENT_REPORTED_COMPLETE",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-12",
+      "result": "5 own-stock variants DENY (independently verified); despachos adjusted (independently verified); promo_campaigns and MAIN theme copy changed (executing agent readback reported).",
+      "evidence_ref": "records/daily/2026-11-12-t12-d06-and-market-priorities.md",
+      "next_action": "Observe real consumer orders and PMax under documented copy intervention. No further automatic fixes."
+    },
+    {
+      "id": "P2-D06-PERFORMANCE-WATCH-20261112",
+      "title": "D06 page performance / supplier image hypothesis — observation only",
+      "owner": "growth",
+      "status": "BACKLOG_P2",
+      "priority": "P2",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-12",
+      "decision": "DO_NOT_MIGRATE_IMAGES_WITHOUT_RENDERED_NETWORK_EVIDENCE",
+      "evidence_ref": "records/daily/2026-11-12-t12-d06-and-market-priorities.md",
+      "next_action": "Only revisit if paid-traffic page LCP P75 >2500ms at >=100 loads, reproducible major INP degradation, or measured external critical image blocking conversions; focus on real purchases first.",
+      "scope": "No Shopify theme, catalog, recommendation or supplier image mutation."
     }
   ]
 }

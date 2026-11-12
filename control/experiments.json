@@ -13,11 +13,20 @@
       "started_at_local": "2026-11-11T05:12:28-03:00",
       "first_clean_business_day": "2026-11-12",
       "primary_outcome": "verified_non_test_customer_orders",
-      "secondary_outcomes": ["attributed_purchase_conversions", "cost_cny", "network_click_mix", "qualified_session_indicators"],
+      "secondary_outcomes": [
+        "attributed_purchase_conversions",
+        "cost_cny",
+        "network_click_mix",
+        "qualified_session_indicators"
+      ],
       "source": "operator_report_and_agent_google_ads_api_readback",
       "review": {
         "mode": "FIRST_OF_MANUAL_REVIEW_NOT_AUTOMATIC_PAUSE",
-        "after_incremental_spend": {"amount": 300, "currency": "CNY", "hard_cap": false},
+        "after_incremental_spend": {
+          "amount": 300,
+          "currency": "CNY",
+          "hard_cap": false
+        },
         "after_elapsed_days": 14,
         "scheduled_time_local": "2026-11-25T05:12:28-03:00"
       },
@@ -33,7 +42,24 @@
         "reason": "Recommendation and instrumentation changes can alter conversion environment during PMax purchase-only evaluation.",
         "exception_policy": "No implied exception: explicit scoped approval, before snapshot and post-change evaluation boundary are required."
       },
-      "notes": "Mixed day 2026-11-11 is excluded from clean-day comparisons. All four historical Shopify orders were confirmed internal tests."
+      "notes": "Mixed day 2026-11-11 is excluded from clean-day comparisons. All four historical Shopify orders were confirmed internal tests.",
+      "observed_interventions": [
+        {
+          "id": "T12-COPY-INTERVENTION-20261111",
+          "classification": "CUSTOMER_VISIBLE_COPY_CHANGE_NO_CHECKOUT_RULE_CHANGE",
+          "source": "executing_agent_report_for_theme_and_metafield; Shopify API direct readback for published despachos page",
+          "shipped_changes_utc": [
+            "2026-11-12T02:55:47Z",
+            "2026-11-12T02:58:54Z",
+            "2026-11-12T02:59:08Z",
+            "2026-11-12T02:59:17Z"
+          ],
+          "business_date": "2026-11-11",
+          "effects": "Affects buyer-visible shipping/discount messaging; order/shipping rules unchanged; cannot attribute all post-change conversion variation solely to Purchase-only bidding.",
+          "reference": "records/daily/2026-11-12-t12-d06-and-market-priorities.md",
+          "pmax_bid_strategy_unchanged": true
+        }
+      ]
     },
     {
       "id": "EXP-RECS-RULES-V1",
