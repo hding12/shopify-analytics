@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "business_timezone": "America/Santiago",
-  "as_of_date": "2026-11-11",
+  "as_of_date": "2026-11-12",
   "experiments": [
     {
       "id": "EXP-PMAX-PURCHASE-ONLY-20261111",
@@ -70,6 +70,24 @@
           "effects": "Automatic free standard shipping now combines with 30% order discount without subtotal minimum. This changes final shopper economics during PMax observation; 2026-11-12 is mixed and does NOT support single-variable full-day attribution.",
           "reference": "records/daily/2026-11-12-t13-free-shipping-verified.md",
           "pmax_bid_strategy_unchanged": true
+        },
+        {
+          "id": "T17-PROMO-DISPLAY-20261112",
+          "classification": "CUSTOMER_VISIBLE_PROMO_DISPLAY_CONFIGURATION_CHANGE",
+          "source": "Executing agent metafield write with CAS; Shopify Admin API direct readback of custom.promo_campaigns and of both active automatic discounts",
+          "config_shipped_at_utc": "2026-11-12T07:56:59Z",
+          "config_shipped_at_local": "2026-11-12T04:56:59-03:00",
+          "business_date": "2026-11-12",
+          "effects": "Restores buyer-visible 30% discount price display that was suppressed by a gap in promo campaign scheduling. Actual automatic discount rules, PMax bid strategy and PMax budget were NOT modified. This is a buyer-visible promo display change, not a checkout rule change, and it further mixes the 2026-11-12 observation window.",
+          "reference": "records/daily/2026-11-12-t17-promo-display.md",
+          "pmax_bid_strategy_unchanged": true,
+          "pmax_budget_unchanged": true,
+          "browser_qa_followup": {
+            "verified_by": "T18-B",
+            "verified_at_utc": "2026-11-12T08:46:00Z",
+            "result": "Both P0 PDPs confirmed in a real mobile browser with QA isolation: compact MB shows 21,657 CLP against habitual 30,938 CLP; lipstick LV shows 31,618 CLP against habitual 45,169 CLP. 30% automatic discount plus no-minimum free standard shipping copy present on both. No '--:--:--' countdown placeholder rendered. MSX_RECS_CONFIG reported internal=true with qa_run_id=qa-t18-20261112, so no PostHog exposure or click pollution.",
+            "open_items": "On both PDPs the add-to-cart button sits below the first mobile viewport (top ~1211 CSS px at 390x844) and no msx-sticky-buy element renders on the product page. Not a promo-display defect; recorded for follow-up only."
+          }
         }
       ],
       "initially_planned_first_clean_business_day": "2026-11-12",
