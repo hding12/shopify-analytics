@@ -43,3 +43,15 @@
 - Do not change PMax without explicit consent. Do not run ranking automation that overrides current Shopify merchandising. Do not promote `G2PAR2` during global 30%. No ExoClick recharge; no Mercado Libre adult listing or wholesaler outreach in this experiment.
 - G2X campaign creation and eventual enable had conditional authorization: ad APPROVED/APPROVED_LIMITED, legitimate supplier and Shopify checkout, exact total budget, controlled CPC, Chile targeting and shipping.
 - Each write should have before snapshot, scoped authorization, API status, independent readback and rollback. The G2X ads/AG-B remained in review in the latest user report; never treat that history as current live eligibility.
+
+<!-- T26 2026-11-13 -->
+## 2026-11-12–13：T16/T22/T24 新增时间线（2026-11-13 增量）
+
+- **2026-11-12T15:29:49Z–15:30:22Z**：T22 两条 G2 促销 RSA `831439588688`、`831439627169` 精确启用并回读；budget=120 CNY/day、常青广告与其它资源不变；到期保护脚本实际未来执行尚未验收。
+- **2026-11-13T01:02:16Z**（CL 11/12 22:02）：T16 仅采集主题 `191909396758` 转 MAIN；**01:18:39Z** 才建立 PostHog 生产可信起点；推荐排序/学习未启用。
+- **2026-11-12 CL 08:35–09:05**：T24B 移动 Checkout QA PASS，但 4 次 Shopify/GA4 加购和 2 次 checkout 访问没有 PostHog 的跨系统 QA 排除。结账可达不等于已确认真实消费者购买。
+- **2026-11-13T03:04:49Z**（CL 00:04:49）：T24D 精确将 Negro 变体 `51641609355542` 发布至 Online Store `313209422102`，读回 true，其他 Shop/POS/Google & YouTube 仍 false；原“Storefront 索引异常”根因假说被推翻。
+- **截至 2026-11-13 此快照**：G2 11/12 共 18 clicks / 70.32 CNY，两条新 RSA 7 clicks / 27.85 CNY；PMax 11/12 共 162 clicks / 34.0017 CNY，157 Search Partners clicks、19 Google invalid clicks；无经独立核实的真实消费者付款订单。T24E 价格对齐仅为草案。
+
+所有事件完整范围与证据等级见 `records/daily/2026-11-12-t20-t22-promo-rsa.md`、`records/daily/2026-11-13-t16-t25-growth-review.md` 和 `records/runs/2026-11-12-to-13-operations.jsonl`。
+<!-- /T26 2026-11-13 -->

@@ -80,11 +80,22 @@ def load_and_validate():
             require(isinstance(patterns, list) and patterns and all(isinstance(p, str) and ":" in p for p in patterns),
                     f"Invalid protected resource patterns: {exp_id}")
             review = exp.get("review", {})
-            require(review.get("mode") == "FIRST_OF_MANUAL_REVIEW_NOT_AUTOMATIC_PAUSE", f"Invalid review policy: {exp_id}")
-            spend = review.get("after_incremental_spend", {})
-            require(spend.get("currency") == "CNY" and isinstance(spend.get("amount"), (float, int))
-                    and spend.get("amount") > 0 and spend.get("hard_cap") is False,
-                    f"Invalid spend review metric: {exp_id}")
+            mode = review.get("mode")
+            if mode == "FIRST_OF_MANUAL_REVIEW_NOT_AUTOMATIC_PAUSE":
+                spend = review.get("after_incremental_spend", {})
+                require(spend.get("currency") == "CNY" and isinstance(spend.get("amount"), (float, int))
+                        and spend.get("amount") > 0 and spend.get("hard_cap") is False,
+                        f"Invalid spend review metric: {exp_id}")
+            elif mode == "SCHEDULED_SCRIPT_SUNSET_MANUAL_POST_CUTOFF_REVIEW":
+                require(exp_id == "EXP-G2-PROMO-RSA-20261112", "Unexpected scheduled-sunset experiment")
+                require(review.get("script_id") == "12708189" and review.get("script_cutoff_utc") == "2026-11-30T23:00:00Z",
+                        "Incorrect G2 promo script/cutoff")
+                require(sorted(review.get("ad_ids", [])) == ["831439588688", "831439627169"],
+                        "Unexpected G2 promo ad whitelist")
+                require(review.get("actual_sunset_verified") is False and review.get("not_an_exact_second_scheduler") is True,
+                        "G2 actual sunset has not been observed")
+            else:
+                raise ControlError(f"Invalid review policy: {exp_id}")
     for mod in mods:
         for expid in mod.get("active_experiments", []):
             require(expid in exp_ids, f"Unknown active experiment {expid} in module {mod['id']}")
@@ -107,8 +118,13 @@ def show_status(portfolio, experiments, tasks):
     for exp in experiments["experiments"]:
         print(f"EXPERIMENT  {exp['id']}: {exp['status']}")
         if exp.get("status") == "ACTIVE":
-            print(f"  manual review: +{exp['review']['after_incremental_spend']['amount']} {exp['review']['after_incremental_spend']['currency']}"
-                  f" or {exp['review']['after_elapsed_days']} days (whichever first; NOT a hard cap)")
+            review = exp.get("review", {})
+            if review.get("mode") == "FIRST_OF_MANUAL_REVIEW_NOT_AUTOMATIC_PAUSE":
+                print(f"  manual review: +{review['after_incremental_spend']['amount']} {review['after_incremental_spend']['currency']}"
+                      f" or {review['after_elapsed_days']} days (whichever first; NOT a hard cap)")
+            else:
+                print(f"  bounded sunset: script {review.get('script_id')} cutoff {review.get('script_cutoff_utc')};"
+                      " actual post-cutoff pause still requires readback")
     for mod in portfolio["modules"]:
         print(f"MODULE      {mod['id']}: {mod['status_at_snapshot']}")
     print(f"TASKS       {len(tasks['tasks'])} tracked")

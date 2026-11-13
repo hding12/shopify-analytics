@@ -42,3 +42,14 @@ Keep report type consistent. Ad account currencies differ from Shopify settlemen
 ## 4. Insight qualification template
 
 For each claim: observation window, scope, unit, value, source tool, source freshness, affected products, evidence URIs, data contamination, alternative explanations, decision that used it, follow-up result, confidence, expiry/review date. The operator authorized publishing selected account-specific historical figures in `records/`. Do not publish customer PII, credentials or unreviewed raw API payloads; record freshness, uncertainty and source for every numeric claim.
+
+<!-- T26 2026-11-13 -->
+## 2026-11-13 实际新应用（不同于插件示例）
+
+- **T22 精确创意写入**：`campaign_and_resource_get` 读取广告审核/预算/网络，经营者 UI 验证 Google Ads Script Enabled 与 20–21 CL；`manage_campaign` 仅送两组 `ads[].platform_settings.status=ENABLED`，然后独立回读五条广告。`write_status=applied` 不能替代后续读回。
+- **T25 网络/无效点击**：使用 Google Ads `Networkwithsearchpartners` 与 `Invalidclicks`，保留 `Date/CampaignID` 维度；不能把 PMax Search Partners clicks 与 Shopify `syndicatedsearch.goog` Sessions 做事件级 JOIN。
+- **变体渠道审计**：Shopify Admin `ProductVariant.publishedOnPublication(publicationId)` 比 `inventoryQuantity` 和全局 `availableForSale` 更能解释“有库存但某渠道不可见”；批量筛选器的 `published_status:unpublished` 曾漏掉实际未发布的 Negro，应逐变体直接检查。
+- **跨系统 QA 数据**：PostHog QA id 只在自己的采集链路生效；Shopify/GA4 的 add_to_cart/Checkout 事件仍会被计入。统计诊断必须保留 session 与 event 不可换算的界线。
+
+以上属于**项目实际应用**；不证明插件自带的创意疲劳/CPA 模板在本店有有效盈利预测。
+<!-- /T26 2026-11-13 -->

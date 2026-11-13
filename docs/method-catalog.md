@@ -36,3 +36,11 @@ Every method card should specify: question, trigger, prerequisite evidence, inpu
 7. Apply, read back, observe, record and avoid overinterpreting small samples.
 
 Source: reusable best practices synthesized from Supermetrics analysis and campaign-management workflows plus MaxSensual incident reviews. This document is the adapted methodology, not a verbatim copy of plugin materials.
+
+<!-- T26 2026-11-13 -->
+## 2026-11-13 的方法索引增量
+
+方法 M-26～M-34 已版本化保存于 [`methods-2026-11-13-addendum.md`](methods-2026-11-13-addendum.md)。这些条目是对已有 M-01～M-25 的扩展，涵盖期限保护型 RSA 上线、证据分层归因、跨系统 QA、变体级发布、CLP 取整、购买路径与商业意图分离、媒体异常多证据解释、多干预时间线以及根因可证伪。
+
+**切勿把 Plugin 模板阈值直接当 MaxSensual 市场事实。** 所有方法必须同时提供适用条件、反证、作用域、用户授权和读回标准。
+<!-- /T26 2026-11-13 -->

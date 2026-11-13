@@ -3,7 +3,7 @@
   "project": "MaxSensual",
   "control_repo": "hding12/shopify-analytics",
   "business_timezone": "America/Santiago",
-  "snapshot_as_of_date": "2026-11-11",
+  "snapshot_as_of_date": "2026-11-13",
   "state_policy": "HISTORICAL_OBSERVATION_NOT_LIVE_AUTHORITY",
   "business_goals": {
     "primary": "independently_verified_non_test_customer_orders",
@@ -15,15 +15,31 @@
       "id": "acquisition",
       "display_name": "Paid acquisition and purchase verification",
       "execution_system": "Google Ads + Shopify + GA4 + Supermetrics",
-      "status_at_snapshot": "RUNNING",
-      "active_experiments": ["EXP-PMAX-PURCHASE-ONLY-20261111"],
+      "status_at_snapshot": "G2_AND_PMAX_RUNNING_PURCHASE_UNVERIFIED",
+      "active_experiments": [
+        "EXP-PMAX-PURCHASE-ONLY-20261111",
+        "EXP-G2-PROMO-RSA-20261112"
+      ],
       "observed_facts": {
         "pmax_campaign_id": "24244298528",
         "pmax_status": "ENABLED",
         "pmax_daily_budget": 42,
         "pmax_budget_currency": "CNY",
         "pmax_conversion_goal_change": "ADD_TO_CART_WEBSITE_BIDDABLE_FALSE_CAMPAIGN_LEVEL",
-        "verified_real_customer_orders": 0
+        "verified_real_customer_orders": 0,
+        "g2_campaign_id": "24447529143",
+        "g2_daily_budget_cny": 120,
+        "g2_promo_rsa_ids": [
+          "831439588688",
+          "831439627169"
+        ],
+        "g2_promo_rsa_status_after_t22": "ENABLED",
+        "g2_sunset_script_id": "12708189",
+        "g2_sunset_cutoff_utc": "2026-11-30T23:00:00Z",
+        "g2_sunset_actual_execution": "NOT_YET_VERIFIED",
+        "g2x_campaign_id": "24459774700",
+        "g2x_status_at_snapshot": "PAUSED",
+        "t25_data_caveat": "2026-11-12 business day mixed interventions/QA; ad reports may backfill"
       },
       "facts_source": "operator_and_agent_readback_plus_shopify_and_supermetrics_queries",
       "live_readback_required_before_change": true
@@ -33,7 +49,7 @@
       "display_name": "Recommendation engine and Shopify collection ordering",
       "execution_repo": "hding12/maxsensual-recs",
       "execution_repo_visibility": "PRIVATE",
-      "status_at_snapshot": "DRY_RUN_READY_NOT_PUBLISHED",
+      "status_at_snapshot": "CAPTURE_ONLY_PRODUCTION_RANKING_UNPUBLISHED",
       "last_dry_run": {
         "business_date": "2026-11-11",
         "plan_id": "02a5e78282e8b0a27c1df9f3",
@@ -44,20 +60,31 @@
       },
       "publishing_enabled_at_snapshot": false,
       "feedback_learning_enabled_at_snapshot": false,
-      "coordination_mode": "READ_ONLY_REFERENCE_ONLY",
-      "live_readback_required_before_change": true
+      "coordination_mode": "T16_CAPTURE_APPROVED_AND_PUBLISHED; RANKING_AND_FEEDBACK_STILL_ON_HOLD",
+      "live_readback_required_before_change": true,
+      "capture_status_at_snapshot": "PRODUCTION_CAPTURE_ONLY_PASS",
+      "capture_theme_id": "191909396758",
+      "trusted_capture_start_utc": "2026-11-13T01:18:39Z",
+      "ranking_policy_status_at_snapshot": "NOT_PUBLISHED",
+      "feedback_quality_approved_at_snapshot": false,
+      "capture_evidence": "https://github.com/hding12/maxsensual-recs/blob/main/docs/T16-PRODUCTION-RESULT.zh-CN.md"
     },
     {
       "id": "measurement",
       "display_name": "GA4, Shopify events and experiment attribution",
-      "status_at_snapshot": "STABLE_WITH_KNOWN_MEASUREMENT_LIMITATIONS",
+      "status_at_snapshot": "T16_CAPTURE_QA_VERIFIED_ECOM_QA_CONTAMINATION_OPEN",
       "last_pixel_incident": {
         "id": "INC-T08-20261111",
         "outcome": "ROLLED_BACK_VERIFIED_BY_EXECUTING_AGENT",
         "source": "executing_agent_report_not_independently_readback_here",
         "notes": "Custom Pixel add_to_cart created duplicate with existing Google and YouTube app pixel; exact original body SHA reportedly restored. Do not retry add_to_cart patch without a new independently verified requirement."
       },
-      "live_readback_required_before_change": true
+      "live_readback_required_before_change": true,
+      "observed_limitations_20261113": {
+        "t16": "PostHog recommendation capture only, does not join ads/GA4 purchase",
+        "t24b": "4 unisolated Shopify/GA4 add_to_cart events and 2 checkout visits during QA",
+        "t24e": "CLP lipstick display 31618 vs single-item Checkout 31619; draft-only fix"
+      }
     }
   ],
   "operating_rules": [
@@ -65,6 +92,13 @@
     "Never treat a dry run or approved proposal as a published change.",
     "Any change affecting an active experiment's customer-facing environment requires scoped approval and a new measurement boundary.",
     "No automated change to the recommendations repository is authorized by this control snapshot.",
-    "No tokens, customer PII, payment evidence or raw checkout URLs in public records."
-  ]
+    "No tokens, customer PII, payment evidence or raw checkout URLs in public records.",
+    "2026-11-11 recommendation no-change guard is historical; T16 capture-only was explicitly authorized and deployed. This does NOT authorize collection/ranking/feedback changes.",
+    "A single child variant may be unavailable in Online Store despite positive inventory and availableForSale; check per-variant publication.",
+    "T24-B PostHog QA marking does not suppress Shopify/GA4 events; do not subtract events from session-level metrics.",
+    "11/12-13 America/Santiago are mixed intervention days; keep PMax and G2 experiment origins and record individual changes.",
+    "This file is a historical read index and never grants new production write authorization."
+  ],
+  "snapshot_basis": "GitHub+Shopify+Google Ads connector evidence, historical business-day snapshot; NOT current authorization",
+  "supersedes_snapshot_as_of_date": "2026-11-11"
 }

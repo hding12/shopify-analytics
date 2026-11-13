@@ -1,5 +1,21 @@
 # AGENTS.md — MaxSensual Analytics
 
+<!-- T26 2026-11-13 -->
+## 最新入口：T26 2026-11-13（覆盖下面旧时点的执行状态）
+
+**开始新增长任务前**：先读 `control/README.md` 与 `state/guards-2026-11-13-addendum.json`，再读 `control/experiments.json`、`control/tasks.json`、`docs/methods-2026-11-13-addendum.md` 和 `docs/measurement-t16-production-contract.md`。所有文件是**历史观察与方法知识**，不是生产授权；行动前必须实时读取 Shopify/Google Ads/推荐仓库。
+
+- 2026-11-11 的“推荐技术仓库只读、不允许上线”是**历史禁令**；后续已**明确授权并完成** T16 **仅推荐曝光采集**发布。MAIN `191909396758`，可信起点 `2026-11-13T01:18:39Z`；推荐排序 `publishing_enabled=false`、反馈 `enabled=false`、质量批准 `quality_approved=false`。T16 授权不能外推为排名调整/自动学习/改动其他资源。
+- T22 两条 G2 促销 RSA `831439588688`/`831439627169` 已精确启用；Script `12708189` 截止 `2026-11-30T23:00:00Z`、每日 20–21 America/Santiago；**到期真实停用仍待事后验证**，不是永久新广告授权。
+- T24-D 仅将现有 Negro 变体 `51641609355542` 发布到 Online Store `313209422102`，不批准其 Shop/POS/Google & YouTube 的发布。父商品 ACTIVE 与变体 `availableForSale` 不等于变体渠道已发布。
+- T24-B 4 次 Shopify/GA4 加购事件与 2 次 checkout 访问是未隔离 QA，不等于购买；T24-E 的 1 CLP 展示/Checkout 价格差**尚未修复**。
+- 2026-11-12/13 智利业务日存在多个干预，均不是已验证的单变量完整日。禁止用高 Search Partners CTR、`human` 标记或 Google 无效点击数字作欺诈/购买因果结论。
+- 不将 T16 的 PostHog 推荐事件与 GA4/Shopify/Ads 按未经证明的共同身份作事件级 JOIN。真实非测试消费者付款订单和扣除实际成本后的贡献利润依然是核心经营目标。
+
+**历史记录规则**：下面保留 11/11 的旧状态与安全经验，但具体“当前状态/授权”以本段与实时平台验证为准，不能以旧快照恢复过期禁令或启动新任务。
+<!-- /T26 2026-11-13 -->
+
+
 <!-- growth-day-audit-2026-11-11:start -->
 ## ⚠ 入口优先级：活跃实验与今天已证实的反例
 
@@ -7,7 +23,7 @@
 
 - 市场仓库是 **historical/advisory control index**，真实 Google Ads/Shopify/API 最新状态需单独读回；不能把 Git JSON 当成授权。
 - PMax Purchase-only 实验起点 2026-11-11 05:12:28 America/Santiago；变更影响顾客页面、推荐集合或 Pixel 时检查实验冲突与独立用户审批。300 CNY/14 天为人工复核条件，绝非自动停投。
-- **用户当前明确要求不动推荐技术仓库** `hding12/maxsensual-recs`：允许只读参照，禁止提交、触发 Actions、启用发布或修改调度，除非用户另行明确授权。
+- **2026-11-11 历史禁令（后续 T16 有限发布授权已取代其部分范围）** `hding12/maxsensual-recs`：允许只读参照，禁止提交、触发 Actions、启用发布或修改调度，除非用户另行明确授权。
 - T08 “集合页 App Pixel 不会发 ATC”已被生产数据否定。**先列全所有标准电子商务事件发送者，再提任何补发方案**。Custom Pixel v5 部署失败且已由执行 Agent 报告精确回滚，禁止以旧授权重试。
 - 生产发布后 hash 未匹配授权的**预定义比较表示**时，立刻停止/回滚，不得事后自行放宽；T08 的时钟记录有冲突，只保留为有争议的 Agent 报告。
 - 4 笔历史 PAID 单均经用户确认是测试，真实消费者订单/收入当时为 0；Shopify session-with-cart ≠ GA4 ATC event ≠ Ads conversion。

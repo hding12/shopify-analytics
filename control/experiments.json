@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "business_timezone": "America/Santiago",
-  "as_of_date": "2026-11-12",
+  "as_of_date": "2026-11-13",
   "experiments": [
     {
       "id": "EXP-PMAX-PURCHASE-ONLY-20261111",
@@ -11,7 +11,7 @@
       "campaign_id": "24244298528",
       "started_at_utc": "2026-11-11T08:12:28Z",
       "started_at_local": "2026-11-11T05:12:28-03:00",
-      "first_clean_business_day": "2026-11-13",
+      "first_clean_business_day": null,
       "primary_outcome": "verified_non_test_customer_orders",
       "secondary_outcomes": [
         "attributed_purchase_conversions",
@@ -42,7 +42,7 @@
         "reason": "Recommendation and instrumentation changes can alter conversion environment during PMax purchase-only evaluation.",
         "exception_policy": "No implied exception: explicit scoped approval, before snapshot and post-change evaluation boundary are required."
       },
-      "notes": "Mixed day 2026-11-11 is excluded from clean-day comparisons. All four historical Shopify orders were confirmed internal tests.",
+      "notes": "Mixed day 2026-11-11 is excluded from clean-day comparisons. All four historical Shopify orders were confirmed internal tests. Snapshot updated: 2026-11-12 and 2026-11-13 CL are not clean single-variable observation days.",
       "observed_interventions": [
         {
           "id": "T12-COPY-INTERVENTION-20261111",
@@ -88,10 +88,44 @@
             "result": "Both P0 PDPs confirmed in a real mobile browser with QA isolation: compact MB shows 21,657 CLP against habitual 30,938 CLP; lipstick LV shows 31,618 CLP against habitual 45,169 CLP. 30% automatic discount plus no-minimum free standard shipping copy present on both. No '--:--:--' countdown placeholder rendered. MSX_RECS_CONFIG reported internal=true with qa_run_id=qa-t18-20261112, so no PostHog exposure or click pollution.",
             "open_items": "On both PDPs the add-to-cart button sits below the first mobile viewport (top ~1211 CSS px at 390x844) and no msx-sticky-buy element renders on the product page. Not a promo-display defect; recorded for follow-up only."
           }
+        },
+        {
+          "id": "T22-G2-PROMO-RSA-ENABLE-20261112",
+          "classification": "PAID_CREATIVE_DELIVERY_CHANGE_AND_SHARED_SITE_TRAFFIC_MIX",
+          "occurred_at_utc": "2026-11-12T15:30:02.493Z",
+          "business_date": "2026-11-12",
+          "effects": "Two G2 promotional RSA enabled, campaign 24447529143 budget unchanged; parallel paid-traffic intervention. Guard sunset separate from Shopify sale expiry.",
+          "reference": "records/daily/2026-11-12-t20-t22-promo-rsa.md"
+        },
+        {
+          "id": "T24B-QA-20261112",
+          "classification": "STANDARD_ECOMMERCE_QA_EVENT_CONTAMINATION",
+          "occurred_at_utc": null,
+          "business_date": "2026-11-12",
+          "effects": "4 add_to_cart events and 2 checkout visits in Shopify/GA4 during scoped QA; PostHog recommendation QA isolation does not cover them.",
+          "reference": "records/daily/2026-11-13-t16-t25-growth-review.md"
+        },
+        {
+          "id": "T16-CAPTURE-MAIN-20261112",
+          "classification": "THEME_MEASUREMENT_OBSERVATION_CHANGE_NOT_RECOMMENDATION_RANKING",
+          "occurred_at_utc": "2026-11-13T01:02:16.427Z",
+          "trusted_since_utc": "2026-11-13T01:18:39Z",
+          "business_date": "2026-11-12",
+          "effects": "MAIN theme 191909396758, trusted recommendation capture start later than publish; no sorting/learning change.",
+          "reference": "records/daily/2026-11-13-t16-t25-growth-review.md"
+        },
+        {
+          "id": "T24D-NEGRO-ONLINE-STORE-20261113",
+          "classification": "CUSTOMER_VISIBLE_VARIANT_AVAILABILITY_CHANGE",
+          "occurred_at_utc": "2026-11-13T03:04:49Z",
+          "business_date": "2026-11-13",
+          "effects": "Published one existing stocked Negro variant only to Online Store; not a change to Ads or recommendation ranking.",
+          "reference": "records/daily/2026-11-13-t16-t25-growth-review.md"
         }
       ],
       "initially_planned_first_clean_business_day": "2026-11-12",
-      "first_clean_business_day_qualification": "Potential first whole day after T13; valid only if no new material interventions; not a pure single-variable comparison with pre-T13."
+      "first_clean_business_day_qualification": "NOT_VERIFIED: T22 RSA activation and T16 MAIN capture deployment on 2026-11-12 CL, T24B QA contamination, T24D variant publication on 2026-11-13 CL. No clean whole business day established; avoid single-variable causal comparisons.",
+      "latest_review_observation_as_of_date": "2026-11-13"
     },
     {
       "id": "EXP-RECS-RULES-V1",
@@ -101,10 +135,62 @@
       "execution_repo": "hding12/maxsensual-recs",
       "source": "GitHub latest dry-run plan and repo configuration",
       "latest_plan_id": "02a5e78282e8b0a27c1df9f3",
-      "publishing_status": "NOT_PUBLISHED",
+      "publishing_status": "RANKING_NOT_PUBLISHED; T16_CAPTURE_ONLY_MAIN",
       "changes_customer_facing_collections": true,
       "publish_approval": "REQUIRED",
-      "notes": "Dry-run computation is allowed. No technical-repo modification, cross-repo job dispatch, or Shopify publication is authorized by this file."
+      "notes": "Dry-run computation is allowed. No technical-repo modification, cross-repo job dispatch, or Shopify publication is authorized by this file. T16 scoped capture release is not permission to publish collection order or enable feedback learning.",
+      "measurement_capture_status": "PRODUCTION_CAPTURE_ONLY_PASS",
+      "feedback_enabled": false,
+      "quality_approved": false
+    },
+    {
+      "id": "EXP-G2-PROMO-RSA-20261112",
+      "name": "Two promotional G2 RSAs active under bounded sunset guard",
+      "status": "ACTIVE",
+      "owner": "growth",
+      "campaign_id": "24447529143",
+      "started_at_utc": "2026-11-12T15:30:02.493Z",
+      "started_at_local": "2026-11-12T12:30:02.493-03:00",
+      "primary_outcome": "independently_verified_non_test_customer_orders",
+      "source": "user_explicit_two_ad_authorization_and_supermetrics_readback",
+      "change_guard": {
+        "mode": "APPROVAL_REQUIRED",
+        "resource_patterns": [
+          "google_ads:campaign:24447529143",
+          "google_ads:ad:831439588688",
+          "google_ads:ad:831439627169",
+          "shopify:theme:*",
+          "shopify:pdp:*"
+        ],
+        "reason": "Paid creative experiment overlaps purchase environment; existing authorization consumed; future changes need new exact approval."
+      },
+      "review": {
+        "mode": "SCHEDULED_SCRIPT_SUNSET_MANUAL_POST_CUTOFF_REVIEW",
+        "script_id": "12708189",
+        "script_status_at_snapshot": "ENABLED",
+        "dry_run_at_snapshot": false,
+        "ad_ids": [
+          "831439588688",
+          "831439627169"
+        ],
+        "ad_group_ids": [
+          "197334270890",
+          "199011811341"
+        ],
+        "script_time_zone": "America/Santiago",
+        "script_frequency_local": "Daily between 8:00 PM and 9:00 PM",
+        "script_cutoff_utc": "2026-11-30T23:00:00Z",
+        "actual_sunset_verified": false,
+        "not_an_exact_second_scheduler": true
+      },
+      "daily_budget_cny_at_snapshot": 120,
+      "secondary_outcomes": [
+        "promotion_ad_id_clicks",
+        "qualified_google_referrer_sessions",
+        "real_customer_checkout",
+        "unit_contribution_after_ad_spend"
+      ],
+      "notes": "APPROVED_LIMITED/NON_FAMILY_SAFE, not a universal ad-policy waiver; T22 permission covers only two status writes already completed."
     }
   ]
 }

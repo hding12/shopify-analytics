@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "snapshot_business_date": "2026-11-13",
+  "snapshot_timezone": "America/Santiago",
+  "classification": "PUBLIC_HISTORICAL_SNAPSHOT_NOT_LIVE_PERMISSION",
+  "policy": "Historical facts only; must independently re-read live API, confirm user authorization and resource ownership before production writes.",
+  "constraints": [
+    {
+      "id": "GUARD-20261113-PAID-001",
+      "resource": "google_ads:account:7828819394",
+      "rule": "G2 24447529143 observed ENABLED at 120 CNY/DAY, Google Search only, Search Partners/Display off; PMax 24244298528 ENABLED at 42 CNY/DAY; G2X 24459774700 PAUSED 175 CNY campaign total. No standing authority to change any of them.",
+      "evidence_class": "connector_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": null,
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-RSA-002",
+      "resource": "google_ads:script:12708189",
+      "rule": "Two and only two promo RSAs 831439588688/831439627169 enabled under prechecked Script 12708189. Script Enabled, DRY_RUN=false, runs daily 20:00-21:00 America/Santiago, cutoff 2026-11-30T23:00:00Z; actual future pause not yet confirmed. Whitelist exact ad-group/ad pairs.",
+      "evidence_class": "user_screenshot_plus_connector_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": null,
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-SHOPIFY-003",
+      "resource": "shopify:discount:global-promo",
+      "rule": "30% automatic order discount and no-minimum free standard shipping both ACTIVE and combinable as observed through checkout QA; scheduled expiry 2026-12-01T02:59:59Z. Shipping discount expiry is later than RSA guard start. Verify live before acting.",
+      "evidence_class": "shopify_api_plus_agent_checkout_QA",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-009",
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-CAPTURE-004",
+      "resource": "shopify:theme:191909396758",
+      "rule": "T16 capture-only theme MAIN at 2026-11-13T01:02:16.427Z. Trusted T16 production observation starts 2026-11-13T01:18:39Z; do not backfill earlier. Recommendation publishing_enabled=false, feedback.enabled=false, quality_approved=false.",
+      "evidence_class": "shopify_main_readback_plus_private_technical_repo",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-003",
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-QA-005",
+      "resource": "analytics:shopify_ga4_posthog",
+      "rule": "PostHog recommendation QA marked and receiver excluded does not mean Shopify/GA4 ecommerce events excluded. T24B produced four unexcluded add_to_cart events and two checkout visits; record contaminated time window, never subtract raw event count from session counts.",
+      "evidence_class": "user_agent_report_plus_analytics_observation",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-009",
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-SKU-006",
+      "resource": "shopify:variant:51641609355542",
+      "rule": "Only Online Store Publication 313209422102 was newly enabled for Negro at 2026-11-13T03:04:49Z. Shop/POS/Google & YouTube remain unpublished; do not extend channel availability without new approval.",
+      "evidence_class": "agent_mutation_plus_shopify_independent_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": null,
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-COPY-007",
+      "resource": "shopify:pdp:10655058690326",
+      "rule": "At observation, lipstick item base 45169 CLP; PDP/JSON-LD/advert 31618 but single-item Cart/Checkout 31619. T24E patch and RSA wording change remain PROPOSED and unapproved. Static 10000-CLP shipping copy conflicts with promo no-minimum.",
+      "evidence_class": "agent_checkout_plus_shopify_theme_code_ads_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": null,
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-COST-008",
+      "resource": "commerce:unit_economics:own_stock",
+      "rule": "For explicitly identified own-stock SKUs the merchant-provided all-in landed unit cost includes procurement, inbound international freight and duties. Do not append blanket +10 CNY inbound charge again; outbound Chile last-mile and payment/fulfillment remain distinct, currently not independently priced.",
+      "evidence_class": "merchant_confirmed",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": null,
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-ORDER-009",
+      "resource": "commerce:real_order_truth",
+      "rule": "Four historical Shopify PAID orders #maxsensual1001-1004 are merchant QA; independently verified non-test consumer purchases remain zero as of last query. QA Add-to-cart, Checkout, GA4 Purchase and Ads conversion are not orders.",
+      "evidence_class": "merchant_confirmation_plus_shopify_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-005",
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-PMAX-010",
+      "resource": "google_ads:campaign:24244298528",
+      "rule": "Purchase-only PMax review is manual at first of 300 CNY incremental spend since 2026-11-11T08:12:28Z or 2026-11-25 CL. Not an auto-pause or hard cap; no PMax budget/status write delegated.",
+      "evidence_class": "prior_user_constraint_plus_connector_readback",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-001",
+      "historical_only": true
+    },
+    {
+      "id": "GUARD-20261113-STUDY-011",
+      "resource": "analytics:business_dates",
+      "rule": "11/12 CL includes promo copy, checkout discount, T16 capture, promo RSA enable and QA; 11/13 CL includes black variant publication. Neither business day is a clean single-variable experiment without separately checked stabilization window.",
+      "evidence_class": "cross_intervention_chronology",
+      "observed_business_date": "2026-11-13",
+      "live_readback_required": true,
+      "supersedes_constraint_id": "GUARD-DAY-002",
+      "historical_only": true
+    }
+  ]
+}

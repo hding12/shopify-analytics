@@ -1,0 +1,94 @@
+[
+  {
+    "id": "DEC-20261113-T16-LIMITED",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "READBACK_VERIFIED",
+    "decision": "Only measurement capture was published. Ranking and adaptive feedback remain disabled.",
+    "rationale": "Shopify MAIN plus PostHog QA verification; no authority to publish collections or enable learning.",
+    "related_insights": [
+      "INS-20261113-T16-PROD"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": true,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-T22-TWO-RSAS",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "READBACK_VERIFIED",
+    "decision": "The exact two G2 promotional RSAs were enabled under expiration script 12708189 after explicit approval.",
+    "rationale": "Authorization was consumed; cannot be extended to any other ads, keywords or budgets.",
+    "related_insights": [
+      "INS-20261113-T22-RSA"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": true,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-T24D-ONE-VARIANT",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "READBACK_VERIFIED",
+    "decision": "Republish only the Negro variant 51641609355542 to Online Store 313209422102; keep Shop, POS and Google & YouTube unchanged.",
+    "rationale": "Fixes a verified variant-publication bug without changing whole product or price.",
+    "related_insights": [
+      "INS-20261113-T24D-VARIANT"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": true,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-T24E-PRICE-PROPOSAL",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "PROPOSED",
+    "decision": "Prepare but do not deploy price-parity patch for card/PDP/JSON-LD; Google Ads headline revision is separate approval.",
+    "rationale": "Display 31618 vs checkout 31619 CLP is real; patch must consider Liquid subunits and multi-item rounding.",
+    "related_insights": [
+      "INS-20261113-T24E-PRICE"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": false,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-T25-QUALITY-WATCH",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "PROPOSED",
+    "decision": "Do not increase spend or auto-pause PMax solely from Search Partners CTR, invalid clicks or Shopify add-to-cart totals.",
+    "rationale": "Different denominators and QA contamination prevent causal profitability claims.",
+    "related_insights": [
+      "INS-20261113-PMAX-QUALITY",
+      "INS-20261113-G2-SESSION"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": false,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-T24C-INDEX-ASSUMPTION",
+    "date": "2026-11-13",
+    "status": "SUPERSEDED",
+    "implementation_status": "PROPOSED",
+    "decision": "Original storefront index/cache defect hypothesis was replaced by variant-level publishing evidence.",
+    "rationale": "Protect history and do not recommend a whole-product unpublish/reindex cycle.",
+    "related_insights": [
+      "INS-20261113-T24C-INDEX-HYP",
+      "INS-20261113-T24D-VARIANT"
+    ],
+    "source_type": "user_scope_plus_connector_or_agent_evidence",
+    "approval_scope_consumed": false,
+    "standing_production_authorization": false,
+    "sensitivity": "public"
+  }
+]

@@ -1,5 +1,17 @@
 # MaxSensual Growth Control v1
 
+<!-- T26 2026-11-13 -->
+## 2026-11-13 快照（优先于 11/11 历史记录）
+
+此目录只是人工决策索引，不连接生产 API，不持有授权，不替代资源锁。请先读 `../state/guards-2026-11-13-addendum.json`、新方法 `../docs/methods-2026-11-13-addendum.md` 与 `../records/daily/2026-11-13-t16-t25-growth-review.md`。
+
+- T16 的**推荐采集**已发布至 MAIN `191909396758`，可信起点 `2026-11-13T01:18:39Z`；排序发布/反馈学习仍关闭。11/11 “推荐仓库只读”仅为历史决定。
+- T22 已精确启用两条 G2 促销 RSA，并有到期 Script，执行后的新授权不自动产生。
+- 11/12–13 CL 发生多次客户可见变化/QA，不能凭 `first_clean_business_day` 的老值判定纯净日。
+- `check-change` 仍只给出提醒，任何输出（包括 `NO_KNOWN_CONFLICT`）都不是可写权限。
+<!-- /T26 2026-11-13 -->
+
+
 <!-- growth-day-audit-2026-11-11:start -->
 ## 2026-11-11 增量审计与当日纠错
 

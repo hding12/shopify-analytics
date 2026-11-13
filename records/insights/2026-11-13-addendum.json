@@ -1,0 +1,233 @@
+[
+  {
+    "id": "INS-20261113-T16-PROD",
+    "title": "T16 capture-only publication passed controlled receiver QA",
+    "status": "VERIFIED",
+    "observed_at": "2026-11-13T01:18:39Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Shopify MAIN is 191909396758; 11/11 production QA event UUIDs and 43 fields matched; recommendation publishing and learning remain disabled.",
+    "sources": [
+      "https://github.com/hding12/maxsensual-recs/blob/main/docs/T16-PRODUCTION-RESULT.zh-CN.md",
+      "https://github.com/hding12/maxsensual-recs/actions/runs/43343742784"
+    ],
+    "limitations": [
+      "QA test is not proof of complete unmarked consumer/agent coverage",
+      "Not the same as recommendation ranking launch"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T22-RSA",
+    "title": "Exact two G2 promotional RSAs enabled",
+    "status": "VERIFIED",
+    "observed_at": "2026-11-12T15:30:22Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Target ad IDs 831439588688 and 831439627169 were independently read back ENABLED; evergreen unchanged; budget 120 CNY/day unchanged.",
+    "sources": [
+      "private-evidence:T22-G2-RSA-activation-evidence.json"
+    ],
+    "limitations": [
+      "Future sunset execution still pending",
+      "APPROVED_LIMITED does not guarantee ongoing delivery"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T24B-CHECKOUT",
+    "title": "Both tested PDP-to-Checkout flows are reachable",
+    "status": "OBSERVED",
+    "observed_at": "2026-11-12T12:05:00Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Agent verified two promoted mobile paths to checkout with shipping 0 and available payment entry; zero payment orders created.",
+    "sources": [
+      "agent-report:T24-B"
+    ],
+    "limitations": [
+      "Controlled environment, not all buyers/devices",
+      "Cloudflare automation 429 incident separate from buyer conversion"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T24B-QA-LEAK",
+    "title": "QA identity is not a cross-analytics event filter",
+    "status": "OBSERVED",
+    "observed_at": "2026-11-12T12:05:00Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "T24-B reported four add_to_cart and two checkout QA interactions in Shopify/GA4 without the recommendation QA marker; PostHog had proper internal tag.",
+    "sources": [
+      "agent-report:T24-B",
+      "private-evidence:T24B-RESULT"
+    ],
+    "limitations": [
+      "Exact event-level backfill/exclusion unavailable in ShopifyQL",
+      "Do not treat event count as same number of sessions"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T24C-INDEX-HYP",
+    "title": "Storefront index defect is not established root cause",
+    "status": "REJECTED",
+    "observed_at": "2026-11-13T03:04:41Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Earlier absence of Negro in storefront was hypothesized to be stale Shopify CDN/Storefront index; the variant-level publication API disproved that diagnosis.",
+    "sources": [
+      "agent-report:T24-C",
+      "shopify_admin_graphql:productVariant.resourcePublicationsV2"
+    ],
+    "limitations": [
+      "Does not rule out unrelated cache faults elsewhere"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T24D-VARIANT",
+    "title": "Variant publishing controls independent storefront sale eligibility",
+    "status": "VERIFIED",
+    "observed_at": "2026-11-13T03:05:05Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Negro variant 51641609355542 was ACTIVE product, stocked 15, availableForSale=true but not published to any channels. One targeted Online Store publication fixed product options; independent readback true, other channels false.",
+    "sources": [
+      "agent-report:T24-D",
+      "shopify_admin_graphql:publishedOnPublication"
+    ],
+    "limitations": [
+      "Single confirmed merchant/store case; other 2487 variants audited only as of this snapshot"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-T24E-PRICE",
+    "title": "PDP promotional price disagrees with single-unit Shopify Checkout",
+    "status": "VERIFIED",
+    "observed_at": "2026-11-13T03:59:17Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "Lipstick base 45169 CLP: advert/PDP/card/JSON-LD 31618 versus controlled single-unit Checkout 31619. Source calculations use Shopify Liquid subunits; simple algebraic rewrite on raw subunits is insufficient.",
+    "sources": [
+      "agent-report:T24-B",
+      "shopify_theme_source:msx-price.liquid",
+      "shopify_theme_source:msx-promo-pdp-price.liquid",
+      "shopify_theme_source:main-product.liquid"
+    ],
+    "limitations": [
+      "Full cart allocation and currency-general formula not verified",
+      "Repair draft not deployed"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-PMAX-QUALITY",
+    "title": "Search Partners traffic quality is unresolved",
+    "status": "OBSERVED",
+    "observed_at": "2026-11-13T03:59:17Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "2026-11-12 Google Ads PMax reported 162 clicks and 34.0017 CNY cost; Search Partners 157 clicks and Google invalid-click count 19. Shopify syndicatedsearch.goog shows anomalous checkout-session volume without verified customer sales.",
+    "sources": [
+      "supermetrics:AW:7828819394:2026-11-12",
+      "shopifyql:sessions:referrer_domain=syndicatedsearch.goog"
+    ],
+    "limitations": [
+      "Network partner clicks are not a provable event-level join to Shopify referrer",
+      "Invalid clicks and high CTR alone do not establish fraud"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  },
+  {
+    "id": "INS-20261113-G2-SESSION",
+    "title": "G2 UTM product-page traffic has no verified paid add-to-cart",
+    "status": "OBSERVED",
+    "observed_at": "2026-11-13T03:59:17Z",
+    "time_window": {
+      "start": "2026-11-12T00:00:00-03:00",
+      "end": "2026-11-13T03:59:17Z",
+      "timezone": "America/Santiago"
+    },
+    "statement": "In the 2026-11-12/13 observed UTM slice, google.com-referrer product page sessions had zero cart additions; a Japan homepage self-referral produced a separate add-to-cart/checkout and must not be counted as paid acquisition.",
+    "sources": [
+      "shopifyql:sessions:utm_campaign=g2-product-search"
+    ],
+    "limitations": [
+      "Traffic source evidence is not individual paid-ad click validation",
+      "QA and backfill affect aggregate session classification"
+    ],
+    "visibility": "public",
+    "scope": {
+      "store": "maxsensual.com",
+      "mode": "historical_snapshot",
+      "observed_at_note": "Timestamp is source event time when known, otherwise audit compilation snapshot time; not invented exact execution time."
+    }
+  }
+]
