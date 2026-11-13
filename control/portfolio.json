@@ -15,9 +15,8 @@
       "id": "acquisition",
       "display_name": "Paid acquisition and purchase verification",
       "execution_system": "Google Ads + Shopify + GA4 + Supermetrics",
-      "status_at_snapshot": "G2_AND_PMAX_RUNNING_PURCHASE_UNVERIFIED",
+      "status_at_snapshot": "G2_AND_PMAX_RUNNING_PMAX_BUSINESS_EXPERIMENT_COMPLETED_PURCHASE_UNVERIFIED",
       "active_experiments": [
-        "EXP-PMAX-PURCHASE-ONLY-20261111",
         "EXP-G2-PROMO-RSA-20261112"
       ],
       "observed_facts": {
@@ -39,7 +38,9 @@
         "g2_sunset_actual_execution": "NOT_YET_VERIFIED",
         "g2x_campaign_id": "24459774700",
         "g2x_status_at_snapshot": "PAUSED",
-        "t25_data_caveat": "2026-11-12 business day mixed interventions/QA; ad reports may backfill"
+        "t25_data_caveat": "2026-11-12 business day mixed interventions/QA; ad reports may backfill",
+        "pmax_business_experiment_status": "COMPLETED_EARLY_INCONCLUSIVE_2026-11-13",
+        "pmax_live_campaign_after_business_experiment": "ENABLED_42_CNY_DAY_UNCHANGED"
       },
       "facts_source": "operator_and_agent_readback_plus_shopify_and_supermetrics_queries",
       "live_readback_required_before_change": true
@@ -49,7 +50,7 @@
       "display_name": "Recommendation engine and Shopify collection ordering",
       "execution_repo": "hding12/maxsensual-recs",
       "execution_repo_visibility": "PRIVATE",
-      "status_at_snapshot": "CAPTURE_ONLY_PRODUCTION_RANKING_UNPUBLISHED",
+      "status_at_snapshot": "CAPTURE_ONLY_RANKING_AWAITING_SCOPED_APPROVAL",
       "last_dry_run": {
         "business_date": "2026-11-11",
         "plan_id": "02a5e78282e8b0a27c1df9f3",
@@ -60,7 +61,7 @@
       },
       "publishing_enabled_at_snapshot": false,
       "feedback_learning_enabled_at_snapshot": false,
-      "coordination_mode": "T16_CAPTURE_APPROVED_AND_PUBLISHED; RANKING_AND_FEEDBACK_STILL_ON_HOLD",
+      "coordination_mode": "PMAX_STRICT_ISOLATION_RELEASED; G2_PROMO_RSA_GUARD_REMAINS; RANKING_UNPUBLISHED; FEEDBACK_LEARNING_DISABLED",
       "live_readback_required_before_change": true,
       "capture_status_at_snapshot": "PRODUCTION_CAPTURE_ONLY_PASS",
       "capture_theme_id": "191909396758",

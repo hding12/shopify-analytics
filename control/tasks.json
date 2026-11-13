@@ -6,11 +6,12 @@
       "id": "T05",
       "title": "Observe PMax Purchase-only on clean business days",
       "owner": "growth",
-      "status": "OBSERVING",
+      "status": "COMPLETED",
       "experiment_id": "EXP-PMAX-PURCHASE-ONLY-20261111",
       "permission": "READ_ONLY",
-      "next_action": "Continue read-only PMax purchase-only observation; CL 11/12 and 11/13 are mixed with T22/T16/T24D interventions. Trigger manual review at +300 CNY since 2026-11-11T08:12:28Z or 2026-11-25 CL, whichever first; never auto-pause.",
-      "decision_gate": "Manual review at incremental 300 CNY or 14 days, whichever comes first; not an automated budget cap."
+      "next_action": "Observe live PMax and real Shopify orders within routine growth review. PMax ad campaign remains ENABLED at 42 CNY/day; no longer blocks recommendation publication decisions.",
+      "decision_gate": "CLOSED_BY_DEC-20261113-PMAX-EARLY-CLOSE; original 300 CNY/2026-11-25 manual review archived in completed experiment.",
+      "result": "User-authorized early PMax business experiment closure, INCONCLUSIVE; no independently verified real customer order."
     },
     {
       "id": "REC-20261111-DRYRUN",
@@ -27,12 +28,12 @@
       "id": "REC-PUBLICATION-APPROVAL",
       "title": "Coordinate first customer-facing recommendation release",
       "owner": "growth",
-      "status": "ON_HOLD",
+      "status": "AWAITING_SCOPED_APPROVAL",
       "experiment_id": "EXP-RECS-RULES-V1",
       "permission": "READ_ONLY",
-      "dependency": "EXP-PMAX-PURCHASE-ONLY-20261111",
-      "next_action": "Only recommendation capture T16 was published. Actual ranking/collection changes remain on hold; require separate scoped approval.",
-      "required_approval": "Explicit scoped approval for Shopify collection membership, order or theme modification."
+      "next_action": "PMax strict single-variable isolation no longer blocks recommendation first release. Evaluate affected collections/home/ads landing pages, obtain specific permission to publish rankings, snapshot before and after with new business-day observation boundary; G2 promo RSA experiment still active and needs impact coordination; feedback learning remains disabled.",
+      "required_approval": "Explicit scoped approval for Shopify collection membership, order or theme modification.",
+      "unblocked_by": "DEC-20261113-PMAX-EARLY-CLOSE"
     },
     {
       "id": "INC-T08-20261111",

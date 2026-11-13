@@ -90,5 +90,21 @@
     "approval_scope_consumed": false,
     "standing_production_authorization": false,
     "sensitivity": "public"
+  },
+  {
+    "id": "DEC-20261113-PMAX-EARLY-CLOSE",
+    "date": "2026-11-13",
+    "status": "ACTIVE",
+    "implementation_status": "READBACK_VERIFIED",
+    "decision": "User approved early closure of the business-level PMax Purchase-only experiment as INCONCLUSIVE, releasing its strict single-variable recommendation freeze. This does not pause PMax or revert its Purchase-only campaign optimization.",
+    "rationale": "As of 2026-11-13 readback: no independently verified non-test Shopify customer orders; ad reporting has a mixed-day add_to_cart conversion but no purchase; material on-site and paid media interventions already prevent clean single-variable attribution. Review completed early by explicit user instruction, ahead of original 300 CNY/Nov25 trigger.",
+    "related_insights": [
+      "INS-20261113-PMAX-QUALITY"
+    ],
+    "source_type": "user_explicit_decision_and_google_ads_shopify_github_readback",
+    "approval_scope_consumed": true,
+    "standing_production_authorization": false,
+    "sensitivity": "public",
+    "scope": "Only control-repo state and guard coordination. PMax Campaign 24244298528 remains enabled with budget 42 CNY/day and current bidding; recommendation ranking still requires separate user scope and production verification. Feedback learning remains off."
   }
 ]

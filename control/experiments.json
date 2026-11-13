@@ -6,7 +6,7 @@
     {
       "id": "EXP-PMAX-PURCHASE-ONLY-20261111",
       "name": "PMax purchase-only optimization",
-      "status": "ACTIVE",
+      "status": "COMPLETED",
       "owner": "growth",
       "campaign_id": "24244298528",
       "started_at_utc": "2026-11-11T08:12:28Z",
@@ -125,7 +125,17 @@
       ],
       "initially_planned_first_clean_business_day": "2026-11-12",
       "first_clean_business_day_qualification": "NOT_VERIFIED: T22 RSA activation and T16 MAIN capture deployment on 2026-11-12 CL, T24B QA contamination, T24D variant publication on 2026-11-13 CL. No clean whole business day established; avoid single-variable causal comparisons.",
-      "latest_review_observation_as_of_date": "2026-11-13"
+      "latest_review_observation_as_of_date": "2026-11-13",
+      "completed_business_date": "2026-11-13",
+      "completion_reason": "USER_AUTHORIZED_EARLY_MANUAL_REVIEW_INCONCLUSIVE",
+      "completion_review": {
+        "decision_id": "DEC-20261113-PMAX-EARLY-CLOSE",
+        "reviewed_business_date": "2026-11-13",
+        "conclusion": "INCONCLUSIVE_ZERO_VERIFIED_NON_TEST_ORDERS",
+        "evidence": "2026-11-11–13 America/Santiago: total PMax reported cost 62.9432 CNY (includes mixed 11/11 pre-05:12:28 period), 315 clicks with 308 Search Partners clicks; 1 Ads attributed conversion on 11/11 was add_to_cart, not purchase. Four known Shopify orders remain internal QA. Site and paid creative interventions invalidate clean single-variable inference.",
+        "preserves": "Google Ads Campaign 24244298528 stays ENABLED at 42 CNY/day with Purchase-only bidding configuration unchanged. Original +300 CNY/2026-11-25 review gate is historical only.",
+        "recommendation_impact": "PMax experiment change guard released; first new Shopify recommendation ranking publication remains independently approval-gated, with before/after snapshot and fresh measurement boundary. Feedback learning remains disabled."
+      }
     },
     {
       "id": "EXP-RECS-RULES-V1",
