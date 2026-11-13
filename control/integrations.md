@@ -1,5 +1,10 @@
 # Integration contract — Growth control (v1)
 
+<!-- T26 2026-11-13 -->
+**2026-11-13 状态更新**：旧的推荐技术仓库只读限制是 11/11 历史边界。T16 仅观察采集已在 `191909396758` 生产 MAIN 上线；规则排序和反馈学习仍关闭，仍需新的独立授权。双方都不应凭对方仓库的 JSON 自动写生产。
+<!-- /T26 2026-11-13 -->
+
+
 The **public** `hding12/shopify-analytics` repository is the *decision index*, not the production configuration service. The **private** `hding12/maxsensual-recs` repository is a separately owned implementation. Do not merge, modify or dispatch jobs to it as part of this patch.
 
 ## Sources of truth

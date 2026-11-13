@@ -11,3 +11,7 @@ raw-evidence/
 raw-snapshots/
 **/*checkout-token*.txt
 .DS_Store
+
+# Ignore future Python bytecode (previously tracked files are left untouched in T26)
+__pycache__/
+*.pyc

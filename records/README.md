@@ -26,3 +26,13 @@ Evidence handling:
 - Treat all `state/constraints.yaml` fields as **historical**, not permissions that authorize a new write. Confirm live campaign state and current user authorization first.
 
 See [`../AGENTS.md`](../AGENTS.md) for enduring data definitions and [`../docs/architecture.md`](../docs/architecture.md) for the record lifecycle.
+
+<!-- T26 2026-11-13 -->
+## 2026-11-13 增量记录
+
+- `daily/2026-11-12-t20-t22-promo-rsa.md`：两条 Google Ads 促销 RSA 和独立过期脚本。
+- `daily/2026-11-13-t16-t25-growth-review.md`：T16 生产采集、T24B QA、T24D 变体修复、T24E 未修复状态、T25 观察。
+- `runs/2026-11-12-to-13-operations.jsonl`、`decisions/2026-11-13-addendum.json`、`insights/2026-11-13-addendum.json`：证据等级、执行/提案状态分离。
+
+旧 G1/G2/G2X、关键词豁免、CPC micros、T08 Pixel 回滚照旧保留。所有新附件是公开安全的**脱敏摘要**，不是原始支付/客户/Ads API 全量回执。
+<!-- /T26 2026-11-13 -->

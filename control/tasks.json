@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of_date": "2026-11-11",
+  "as_of_date": "2026-11-13",
   "tasks": [
     {
       "id": "T05",
@@ -9,7 +9,7 @@
       "status": "OBSERVING",
       "experiment_id": "EXP-PMAX-PURCHASE-ONLY-20261111",
       "permission": "READ_ONLY",
-      "next_action": "Treat 2026-11-12 Santiago as mixed T13 intervention day; use 2026-11-13 onward only as potentially stable post-T13 whole days, track non-test orders, post-change CNY spend and network mix.",
+      "next_action": "Continue read-only PMax purchase-only observation; CL 11/12 and 11/13 are mixed with T22/T16/T24D interventions. Trigger manual review at +300 CNY since 2026-11-11T08:12:28Z or 2026-11-25 CL, whichever first; never auto-pause.",
       "decision_gate": "Manual review at incremental 300 CNY or 14 days, whichever comes first; not an automated budget cap."
     },
     {
@@ -21,7 +21,7 @@
       "permission": "READ_ONLY",
       "result_ref": "https://github.com/hding12/maxsensual-recs/actions/runs/43004092227",
       "result": "26 placements, 0 publish blockers, APPLY=false, Shopify publication not performed.",
-      "next_action": "None until the growth lead approves an independent, scoped publish experiment."
+      "next_action": "Historic 2026-11-11 ranking dry run remains valid as a dry run; T16 capture-only published later, but no ranking/feedback publishing authorization."
     },
     {
       "id": "REC-PUBLICATION-APPROVAL",
@@ -31,7 +31,7 @@
       "experiment_id": "EXP-RECS-RULES-V1",
       "permission": "READ_ONLY",
       "dependency": "EXP-PMAX-PURCHASE-ONLY-20261111",
-      "next_action": "Reassess after PMax review; first propose affected collections and exact experiment boundary, do not enable publish automatically.",
+      "next_action": "Only recommendation capture T16 was published. Actual ranking/collection changes remain on hold; require separate scoped approval.",
       "required_approval": "Explicit scoped approval for Shopify collection membership, order or theme modification."
     },
     {
@@ -86,6 +86,116 @@
       "evidence_ref": "records/daily/2026-11-12-t13-free-shipping-verified.md",
       "result": "Shopify discount combination and policy readback verified; executing agent verified four no-payment checkout cases. Earliest discount configuration change UTC 04:34:54, agent full QA UTC 04:48:26.",
       "next_action": "Observe verified non-test orders, qualified acquisition and contribution margin. Audit post-campaign static discount claims before 2026-12-01 Chile."
+    },
+    {
+      "id": "T16-CAPTURE-20261113",
+      "title": "Publish and verify T16 capture-only MAIN",
+      "owner": "growth",
+      "status": "READBACK_VERIFIED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "readback production theme + 11/11 PostHog QA receipts; trusted start 2026-11-13T01:18:39Z",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T20-T21-SCRIPT-GUARD",
+      "title": "Validate two-ad RSA sunset guard",
+      "owner": "growth",
+      "status": "READBACK_VERIFIED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Read actual two RSA statuses after 2026-11-30 20-21 CL scheduler window; do not assume second-precision pause",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T22-RSA-ENABLE",
+      "title": "Enable only two G2 promotional RSAs",
+      "owner": "growth",
+      "status": "READBACK_VERIFIED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-12-t20-t22-promo-rsa.md",
+      "next_action": "Monitoring only; no outstanding authorization for additional ad writes",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T23-GROWTH-READ",
+      "title": "Separate Google paid, Shopify funnel, abandoned checkout and test orders",
+      "owner": "growth",
+      "status": "READ_ONLY_COMPLETE",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Continue consumer evidence audit without duplicating sent abandonment emails",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T24B-MOBILE-CHECKOUT",
+      "title": "Pre-payment path QA for two paid PDPs",
+      "owner": "growth",
+      "status": "AGENT_REPORTED_PASS_WITH_QA_LEAKAGE",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Checkout path passed; 4 ATC and 2 checkout QA events in Shopify/GA4 are not excluded",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T24C-ROOT-CAUSE",
+      "title": "Identify price and black variant issue",
+      "owner": "growth",
+      "status": "READBACK_VERIFIED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Black variant issue was channel publishing, not stale CSS/CDN index; price inconsistency still open",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T24D-NEGRO-PUBLISH",
+      "title": "Publish one stocked Negro variant to Online Store only",
+      "owner": "growth",
+      "status": "READBACK_VERIFIED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Online Store true after exact mutation; other channels remain false and not implicitly approved",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T24E-PRICE-PARITY",
+      "title": "Produce tested CLP price rounding patch and separate RSA copy proposal",
+      "owner": "growth",
+      "status": "PROPOSED_ONLY",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "No production theme, price, discount or RSA edits before exact new approval; test card/PDP/JSON-LD/Checkout consistency",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T25-COMMERCIAL-OBS",
+      "title": "Read G2 RSA and PMax channel performance with real customer order truth",
+      "owner": "growth",
+      "status": "OBSERVING",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Keep PMax review manual and track valid external orders, network breakdown and ads conversion-action definitions",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
+    },
+    {
+      "id": "T26-KNOWLEDGE-ADDENDUM",
+      "title": "Record 2026-11-13 learning into public knowledge base",
+      "owner": "growth",
+      "status": "PATCH_PREPARED",
+      "permission": "READ_ONLY",
+      "recorded_on": "2026-11-13",
+      "evidence_ref": "records/daily/2026-11-13-t16-t25-growth-review.md",
+      "next_action": "Documentation only; no external API write authorization from repo state",
+      "permission_note": "Historical execution already completed where applicable; READ_ONLY is current task permission and does not re-authorize a past production mutation."
     }
   ]
 }

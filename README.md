@@ -1,5 +1,17 @@
 # MaxSensual · Shopify Analytics & Growth Knowledge Base
 
+<!-- T26 2026-11-13 -->
+## 2026-11-13 当前阅读入口（历史快照，非生产授权）
+
+- [新方法 M-26～M-34](docs/methods-2026-11-13-addendum.md)；[T16 生产推荐采集数据契约](docs/measurement-t16-production-contract.md)；[2026-11-13 具体约束快照](state/guards-2026-11-13-addendum.json)。
+- [T20–T22 促销 RSA 精确启用记录](records/daily/2026-11-12-t20-t22-promo-rsa.md)；[T16/T23–T25 漏斗及变体事件](records/daily/2026-11-13-t16-t25-growth-review.md)。
+- [结构化新决策](records/decisions/2026-11-13-addendum.json)、[洞察](records/insights/2026-11-13-addendum.json)、[追加操作日志](records/runs/2026-11-12-to-13-operations.jsonl)。
+- 三个 Growth Control 快照同步标为 **2026-11-13**；历史旧快照仍可在 Git 中检索，旧 11/11 的不准发布推荐仓库指令不得覆盖后续 T16 **仅采集**的有限授权。
+- **T16 已生产采集，推荐排序/反馈学习未上线**；T22 两条促销 RSA 已启用，截止脚本实际停用待验证；T24-D 仅恢复一个黑色变体的 Online Store 发布；T24-E 修复尚未上线。
+- 商品 1 CLP 展示/结算差额、跨系统 QA 污染、Search Partners 质量仍是待治理项。所有现况需读平台最新数据，任何后续写入均需独立明确授权；本知识库不触发 Ads、Shopify 或推荐仓库执行。
+<!-- /T26 2026-11-13 -->
+
+
 <!-- growth-day-audit-2026-11-11:start -->
 ## 当前业务控制与最新审计（先读）
 

@@ -5,20 +5,24 @@ on:
       - 'control/**'
       - 'records/**'
       - 'docs/**'
-      - 'state/guards-2026-11-11-addendum.json'
+      - 'state/**'
       - 'scripts/validate_growth_day.py'
       - 'tests/test_growth_day_audit.py'
       - 'scripts/growth_control.py'
+      - 'scripts/validate_incremental_records.py'
+      - 'tests/test_t26_incremental.py'
       - '.github/workflows/growth-control-check.yml'
   pull_request:
     paths:
       - 'control/**'
       - 'records/**'
       - 'docs/**'
-      - 'state/guards-2026-11-11-addendum.json'
+      - 'state/**'
       - 'scripts/validate_growth_day.py'
       - 'tests/test_growth_day_audit.py'
       - 'scripts/growth_control.py'
+      - 'scripts/validate_incremental_records.py'
+      - 'tests/test_t26_incremental.py'
       - '.github/workflows/growth-control-check.yml'
 permissions:
   contents: read
@@ -33,4 +37,5 @@ jobs:
       - run: python3 scripts/growth_control.py validate
       - run: python3 scripts/growth_control.py status
       - run: python3 scripts/validate_growth_day.py
-      - run: python3 -m unittest discover -s tests -p 'test_growth_day_audit.py' -v
+      - run: python3 scripts/validate_incremental_records.py
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v

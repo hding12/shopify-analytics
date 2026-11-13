@@ -48,3 +48,11 @@ Run log → diagnostic observation → validated insight → durable method/cons
 ## 5. Two explicit clocks
 
 Store both `captured_at_utc` and `business_date` with `business_timezone`. Store source-account timezone and currency. Date-limited campaigns and discount deadlines must preserve the local-wall-time interpretation alongside UTC.
+
+<!-- T26 2026-11-13 -->
+## 6. 2026-11-13 知识生命周期状态与职责补充
+
+技术仓库的能力开发与生产部署、市场仓库的业务约束和实验解释应分离。本仓库可以记录 `PRODUCTION_CAPTURE_ONLY_PASS`，不能因此触发推荐排序、自动学习或 Shopify 主题改写。用**具体执行资源（ad/variant/publication/theme）+ 操作时间 + 用户授权范围 + 原始证据等级 + 读回**组成不可歧义的证据链；只读观察与可写动作不得共享一个 `approved=true` 布尔值。
+
+需要分别保存：a) 底层源事件事实；b) 可反驳的语义推断；c) 失效旧假说（例如 Storefront 索引问题）；d) 明确新决策；e) 一次性授权已消费；f) 最终平台读回和下次未来 hinge。知识库历史快照只供检索，不是生产执行权限令牌。
+<!-- /T26 2026-11-13 -->
